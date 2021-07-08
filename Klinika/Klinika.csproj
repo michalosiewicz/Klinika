@@ -78,8 +78,12 @@
     <Compile Include="DAL\DBConnection.cs" />
     <Compile Include="DAL\Encje\Lekarz.cs" />
     <Compile Include="DAL\Encje\Pacjent.cs" />
+    <Compile Include="DAL\Encje\Specjalizacja.cs" />
+    <Compile Include="DAL\Encje\Wizyta.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumLekarze.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumPacjenci.cs" />
+    <Compile Include="DAL\Repozytoria\RepozytoriumSpecjalizacje.cs" />
+    <Compile Include="DAL\Repozytoria\RepozytoriumWizyt.cs" />
     <Compile Include="View\Dzien.xaml.cs">
       <DependentUpon>Dzien.xaml</DependentUpon>
     </Compile>
