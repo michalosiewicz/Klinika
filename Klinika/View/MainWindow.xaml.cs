@@ -23,7 +23,6 @@ namespace Klinika
         public MainWindow()
         {
             InitializeComponent();
-            DAL.Repozytoria.RepozytoriumLekarze.PobierzWszystkichLekarzy();
         }
     }
 }

@@ -25,10 +25,6 @@ namespace Klinika.DAL.Repozytoria
                 while (reader.Read())
                     lekarze.Add(new Lekarz(reader));
                 connection.Close();
-                foreach (var i in lekarze)
-                {
-                    MessageBox.Show(i.ToString());
-                }
             }
             return lekarze;
         }
