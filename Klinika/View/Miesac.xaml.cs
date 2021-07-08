@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Klinika
+namespace Klinika.View
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy Miesac.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Miesac : UserControl
     {
-        public MainWindow()
+        public Miesac()
         {
             InitializeComponent();
-            DAL.Repozytoria.RepozytoriumLekarze.PobierzWszystkichLekarzy();
         }
     }
 }
