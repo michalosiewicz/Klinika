@@ -9,23 +9,23 @@ namespace Klinika.DAL.Repozytoria
 {
     using Encje;
 
-    static class RepozytoriumLekarze
+    static class RepozytoriumPacjenci
     {
-        private const string WSZYSCY_LEKARZE = "SELECT * FROM lekarze";
+        private const string WSZYSCY_PACJENCI = "SELECT * FROM pacjenci";
 
-        public static List<Lekarz> PobierzWszystkichLekarzy()
+        public static List<Pacjent> PobierzWszystkichPacjentow()
         {
-            List<Lekarz> lekarze = new List<Lekarz>();
+            List<Pacjent> pacjenci = new List<Pacjent>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                MySqlCommand command = new MySqlCommand(WSZYSCY_LEKARZE, connection);
+                MySqlCommand command = new MySqlCommand(WSZYSCY_PACJENCI, connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
-                    lekarze.Add(new Lekarz(reader));
+                    pacjenci.Add(new Pacjent(reader));
                 connection.Close();
             }
-            return lekarze;
+            return pacjenci;
         }
     }
 }
