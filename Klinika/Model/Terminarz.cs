@@ -46,14 +46,14 @@ namespace Klinika.Model
                 DniMiesaca[0][i] = numer;
                 numer++;
             }
-            for(int i = 1; i < DniMiesaca.Length; i++)
+            for (int i = 1; i < DniMiesaca.Length; i++)
             {
-                for(int j = 0; j < DniMiesaca[i].Length; j++)
+                for (int j = 0; j < DniMiesaca[i].Length; j++)
                 {
-                    DniMiesaca[i][j] = numer;
-                    numer++;
                     if (numer > Kalendarz.GetDaysInMonth(Data.Year, Data.Month))
                         break;
+                    DniMiesaca[i][j] = numer;
+                    numer++;
                 }
             }
         }
