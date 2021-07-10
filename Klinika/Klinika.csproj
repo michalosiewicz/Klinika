@@ -86,11 +86,16 @@
     <Compile Include="DAL\Repozytoria\RepozytoriumPosiadaja.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumSpecjalizacje.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumWizyt.cs" />
+    <Compile Include="Model\Terminarz.cs" />
+    <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
+    <Compile Include="ViewModel\BaseClass\ViewModelBase.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MiesiacViewModel.cs" />
     <Compile Include="View\Dzien.xaml.cs">
       <DependentUpon>Dzien.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Miesac.xaml.cs">
-      <DependentUpon>Miesac.xaml</DependentUpon>
+    <Compile Include="View\Miesiac.xaml.cs">
+      <DependentUpon>Miesiac.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Dzien.xaml">
       <SubType>Designer</SubType>
@@ -108,7 +113,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Miesac.xaml">
+    <Page Include="View\Miesiac.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,9 +145,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

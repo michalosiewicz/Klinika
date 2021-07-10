@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Klinika"
         xmlns:view="clr-namespace:Klinika.View"
+        xmlns:vm="clr-namespace:Klinika.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel x:Name="MainVM"/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <view:Miesac />
+        <view:Miesiac DzienMiesiaca="{Binding Miesiac.DniMiesiaca}"/>
 
         <view:Dzien Grid.Column="1"/>
 

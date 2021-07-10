@@ -16,13 +16,21 @@ using System.Windows.Shapes;
 namespace Klinika.View
 {
     /// <summary>
-    /// Logika interakcji dla klasy Miesac.xaml
+    /// Logika interakcji dla klasy Miesiac.xaml
     /// </summary>
-    public partial class Miesac : UserControl
+    public partial class Miesiac : UserControl
     {
-        public Miesac()
+        public Miesiac()
         {
             InitializeComponent();
+        }
+        public static readonly DependencyProperty DzienMiesiacaDP =
+            DependencyProperty.Register(nameof(DzienMiesiaca), typeof(uint[][]), typeof(Miesiac));
+
+        public uint[][] DzienMiesiaca
+        {
+            get { return (uint[][])GetValue(DzienMiesiacaDP); }
+            set { SetValue(DzienMiesiacaDP, value); }
         }
     }
 }
