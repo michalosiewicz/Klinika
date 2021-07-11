@@ -2,12 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Klinika"
         xmlns:view="clr-namespace:Klinika.View"
         xmlns:vm="clr-namespace:Klinika.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Kalendarz" Height="450" Width="1000">
     <Window.DataContext>
         <vm:MainViewModel x:Name="MainVM"/>
     </Window.DataContext>
@@ -18,9 +19,47 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <view:Miesiac DzienMiesiaca="{Binding Miesiac.DniMiesiaca}"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
 
-        <view:Dzien Grid.Column="1"/>
+            <Grid Grid.Row="0" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Specjalizacja :"/>
+                <TextBlock Grid.Column="2" Text="Lekarz :"/>
+            </Grid>
+
+            <view:Miesiac Grid.Row="1" DzienMiesiaca="{Binding Miesiac.DniMiesiaca}"
+                      Widoczny="{Binding Miesiac.Widoczny}" Margin="5">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="WybranoDzien">
+                        <i:InvokeCommandAction Command="{Binding Miesiac.WybranoDzien}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </view:Miesiac>
+
+                <Grid Grid.Row="2" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"/>
+                <Button Grid.Column="1"/>
+            </Grid>
+            
+        </Grid>
+
+        
+
+            <view:Dzien Grid.Column="1"/>
 
     </Grid>
 </Window>

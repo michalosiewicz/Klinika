@@ -32,5 +32,39 @@ namespace Klinika.View
             get { return (uint[][])GetValue(DzienMiesiacaDP); }
             set { SetValue(DzienMiesiacaDP, value); }
         }
+
+        public static readonly DependencyProperty WidocznyDP =
+            DependencyProperty.Register(nameof(Widoczny), typeof(string[]), typeof(Miesiac));
+
+        public string[] Widoczny
+        {
+            get { return (string[])GetValue(WidocznyDP); }
+            set { SetValue(WidocznyDP, value); }
+        }
+
+        public static readonly RoutedEvent WybranoDzienEvent =
+            EventManager.RegisterRoutedEvent("WybranoDzien",
+                    RoutingStrategy.Bubble, typeof(RoutedEventHandler),
+                    typeof(Miesiac));
+
+        public event RoutedEventHandler WybranoDzien
+        {
+            add { AddHandler(WybranoDzienEvent, value); }
+            remove { RemoveHandler(WybranoDzienEvent, value); }
+        }
+
+        void RaiseWybranoDzien()
+        {
+            //argument zdarzenia
+            RoutedEventArgs newEventArgs =
+                    new RoutedEventArgs(Miesiac.WybranoDzienEvent);
+            //wywołanie zdarzenia
+            RaiseEvent(newEventArgs);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseWybranoDzien();
+        }
     }
 }

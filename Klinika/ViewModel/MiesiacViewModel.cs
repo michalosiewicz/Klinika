@@ -8,6 +8,9 @@ namespace Klinika.ViewModel
 {
     using BaseClass;
     using Model;
+    using System.Windows;
+    using System.Windows.Input;
+
     class MiesiacViewModel:ViewModelBase
     {
         private uint[][] dniMiesiaca;
@@ -19,9 +22,32 @@ namespace Klinika.ViewModel
             set { dniMiesiaca = value; onPropertyChanged(nameof(DniMiesiaca)); }
         }
 
+        private string[] widoczny;
+
+
+        public string[] Widoczny
+        {
+            get { return widoczny; }
+            set { widoczny = value; onPropertyChanged(nameof(Widoczny)); }
+        }
+
         public MiesiacViewModel(Terminarz terminarz)
         {
             DniMiesiaca = terminarz.DniMiesaca;
+            Widoczny = terminarz.Widoczne;
+        }
+
+        private ICommand wybranoDzien;
+        public ICommand WybranoDzien
+        {
+
+            get
+            {
+                return wybranoDzien ?? (wybranoDzien = new RelayCommand(
+                    p => { MessageBox.Show("Click"); },
+                    p => true
+                    ));
+            }
         }
     }
 }
