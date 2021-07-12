@@ -13,21 +13,28 @@ namespace Klinika.Model
         public DateTime Data {get;set;}
         public Calendar Kalendarz { get; set; }
 
-        public uint[][] DniMiesaca { get; set; }
+        public uint[] DniMiesaca { get; set; }
 
         public string[] Widoczne { get; set; }
+
+        public string NazwaMiesiaca { get; set; }
+
+        private int pierwszyDzienMiesiaca;
 
 
         public Terminarz()
         {
-            Data = DateTime.Now;
             Widoczne = new string[15];
-            DniMiesaca = new uint[6][];
-            for(int i = 0; i < DniMiesaca.Length-1; i++)
-            {
-                DniMiesaca[i] = new uint[7];
-            }
-            DniMiesaca[DniMiesaca.Length - 1] = new uint[2];
+            DniMiesaca = new uint[37];
+            Data = DateTime.Now;
+            Data = new DateTime(Data.Year, Data.Month, 1);
+            
+            pierwszyDzienMiesiaca= (int)Data.DayOfWeek;
+            pierwszyDzienMiesiaca--;
+            if (pierwszyDzienMiesiaca == -1)
+                pierwszyDzienMiesiaca = 6;
+
+            AktualizujDate();
             Kalendarz = new GregorianCalendar();
             UluzKalendarz();
         }
@@ -39,39 +46,37 @@ namespace Klinika.Model
 
         private void UluzKalendarz()
         {
+            NazwaMiesiaca = NazwyMiesiecy.NazwaMiesiaca(Data.Month)+" "+Data.Year;
             uint numer = 1;
-            Data = new DateTime(Data.Year, Data.Month, 1);
-            int dzien = (int)Data.DayOfWeek;
-            dzien--;
-            if (dzien == -1)
-                dzien = 6;
-            for (int i = 0; i < dzien; i++)
+            
+            for (int i = 0; i < pierwszyDzienMiesiaca; i++)
             {
                 Widoczne[i] = "Collapsed";
             }
-            
-            for (int i = dzien; i < DniMiesaca[0].Length; i++)
+            int indeks = 14;
+            for (int i = pierwszyDzienMiesiaca; i < DniMiesaca.Length; i++)
             {
-                DniMiesaca[0][i] = numer;
-                numer++;
-            }
-            int indeks=14;
-            for (int i = 1; i < DniMiesaca.Length; i++)
-            {
-                for (int j = 0; j < DniMiesaca[i].Length; j++)
+                if (numer > Kalendarz.GetDaysInMonth(Data.Year, Data.Month))
                 {
-                    if (numer > Kalendarz.GetDaysInMonth(Data.Year, Data.Month))
-                    {
-                        Widoczne[indeks]= "Collapsed";
-                        indeks--;
-                    }
-                    else
-                    {
-                        DniMiesaca[i][j] = numer;
-                        numer++;
-                    }
+                    Widoczne[indeks] = "Collapsed";
+                    indeks--;
+                }
+                else
+                {
+                    DniMiesaca[i] = numer;
+                    numer++;
                 }
             }
+        }
+        public bool DniDostepne(int numerDnia)
+        {
+            AktualizujDate();
+            numerDnia++;
+            numerDnia -= pierwszyDzienMiesiaca;
+            if (numerDnia < Data.Day)
+                return false;
+            else
+                return true;
         }
     }
 }

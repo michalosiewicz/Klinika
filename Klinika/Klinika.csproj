@@ -89,6 +89,7 @@
     <Compile Include="DAL\Repozytoria\RepozytoriumPosiadaja.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumSpecjalizacje.cs" />
     <Compile Include="DAL\Repozytoria\RepozytoriumWizyt.cs" />
+    <Compile Include="Model\NazwyMiesiecy.cs" />
     <Compile Include="Model\Terminarz.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClass\ViewModelBase.cs" />

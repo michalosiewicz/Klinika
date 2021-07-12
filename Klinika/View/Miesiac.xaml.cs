@@ -25,11 +25,11 @@ namespace Klinika.View
             InitializeComponent();
         }
         public static readonly DependencyProperty DzienMiesiacaDP =
-            DependencyProperty.Register(nameof(DzienMiesiaca), typeof(uint[][]), typeof(Miesiac));
+            DependencyProperty.Register(nameof(DzienMiesiaca), typeof(uint[]), typeof(Miesiac));
 
-        public uint[][] DzienMiesiaca
+        public uint[] DzienMiesiaca
         {
-            get { return (uint[][])GetValue(DzienMiesiacaDP); }
+            get { return (uint[])GetValue(DzienMiesiacaDP); }
             set { SetValue(DzienMiesiacaDP, value); }
         }
 
@@ -42,29 +42,22 @@ namespace Klinika.View
             set { SetValue(WidocznyDP, value); }
         }
 
-        public static readonly RoutedEvent WybranoDzienEvent =
-            EventManager.RegisterRoutedEvent("WybranoDzien",
-                    RoutingStrategy.Bubble, typeof(RoutedEventHandler),
-                    typeof(Miesiac));
+        public static readonly DependencyProperty WybranoDzienDP =
+            DependencyProperty.Register(nameof(WybranoDzien), typeof(ICommand), typeof(Miesiac));
 
-        public event RoutedEventHandler WybranoDzien
+        public ICommand WybranoDzien
         {
-            add { AddHandler(WybranoDzienEvent, value); }
-            remove { RemoveHandler(WybranoDzienEvent, value); }
+            get { return (ICommand)GetValue(WybranoDzienDP); }
+            set { SetValue(WybranoDzienDP, value); }
         }
 
-        void RaiseWybranoDzien()
-        {
-            //argument zdarzenia
-            RoutedEventArgs newEventArgs =
-                    new RoutedEventArgs(Miesiac.WybranoDzienEvent);
-            //wywołanie zdarzenia
-            RaiseEvent(newEventArgs);
-        }
+        public static readonly DependencyProperty NazwaMiesiacaDP =
+            DependencyProperty.Register(nameof(NazwaMiesiaca), typeof(string), typeof(Miesiac));
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public string NazwaMiesiaca
         {
-            RaiseWybranoDzien();
+            get { return (string)GetValue(NazwaMiesiacaDP); }
+            set { SetValue(NazwaMiesiacaDP, value); }
         }
     }
 }

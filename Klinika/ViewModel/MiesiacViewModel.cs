@@ -13,10 +13,13 @@ namespace Klinika.ViewModel
 
     class MiesiacViewModel:ViewModelBase
     {
-        private uint[][] dniMiesiaca;
+        private Terminarz terminarz;
+
+
+        private uint[] dniMiesiaca;
         
 
-        public uint[][] DniMiesiaca
+        public uint[] DniMiesiaca
         {
             get { return dniMiesiaca; }
             set { dniMiesiaca = value; onPropertyChanged(nameof(DniMiesiaca)); }
@@ -31,10 +34,12 @@ namespace Klinika.ViewModel
             set { widoczny = value; onPropertyChanged(nameof(Widoczny)); }
         }
 
-        public MiesiacViewModel(Terminarz terminarz)
+        private string nazwaMiesiaca;
+
+        public string NazwaMeisiaca
         {
-            DniMiesiaca = terminarz.DniMiesaca;
-            Widoczny = terminarz.Widoczne;
+            get { return nazwaMiesiaca; }
+            set { nazwaMiesiaca = value; onPropertyChanged(nameof(NazwaMeisiaca)); }
         }
 
         private ICommand wybranoDzien;
@@ -45,9 +50,19 @@ namespace Klinika.ViewModel
             {
                 return wybranoDzien ?? (wybranoDzien = new RelayCommand(
                     p => { MessageBox.Show("Click"); },
-                    p => true
-                    ));
+                    p =>  terminarz.DniDostepne(int.Parse(p.ToString()))
+                    )) ;
             }
         }
+
+        public MiesiacViewModel(Terminarz t)
+        {
+            terminarz = t;
+            DniMiesiaca = terminarz.DniMiesaca;
+            Widoczny = terminarz.Widoczne;
+            NazwaMeisiaca = terminarz.NazwaMiesiaca;
+        }
+
+        
     }
 }
