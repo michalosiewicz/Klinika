@@ -71,10 +71,15 @@ namespace Klinika.Model
         public bool DniDostepne(int numerDnia)
         {
             AktualizujDate();
-            numerDnia++;
-            numerDnia -= pierwszyDzienMiesiaca;
-            if (numerDnia < Data.Day)
-                return false;
+            if (NazwaMiesiaca == NazwyMiesiecy.NazwaMiesiaca(Data.Month) + " " + Data.Year)
+            {
+                numerDnia++;
+                numerDnia -= pierwszyDzienMiesiaca;
+                if (numerDnia < Data.Day)
+                    return false;
+                else
+                    return true;
+            }
             else
                 return true;
         }
