@@ -36,10 +36,10 @@ namespace Klinika.ViewModel
 
         private string nazwaMiesiaca;
 
-        public string NazwaMeisiaca
+        public string NazwaMiesiaca
         {
             get { return nazwaMiesiaca; }
-            set { nazwaMiesiaca = value; onPropertyChanged(nameof(NazwaMeisiaca)); }
+            set { nazwaMiesiaca = value; onPropertyChanged(nameof(NazwaMiesiaca)); }
         }
 
         private ICommand wybranoDzien;
@@ -60,9 +60,15 @@ namespace Klinika.ViewModel
             terminarz = t;
             DniMiesiaca = terminarz.DniMiesaca;
             Widoczny = terminarz.Widoczne;
-            NazwaMeisiaca = terminarz.NazwaMiesiaca;
+            NazwaMiesiaca = terminarz.NazwaMiesiaca;
         }
 
+        public void Aktualizacja()
+        {
+            DniMiesiaca = terminarz.DniMiesaca;
+            Widoczny = terminarz.Widoczne;
+            NazwaMiesiaca = terminarz.NazwaMiesiaca;
+        }
         
     }
 }
