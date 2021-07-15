@@ -8,7 +8,7 @@
         xmlns:view="clr-namespace:Klinika.View"
         xmlns:vm="clr-namespace:Klinika.ViewModel"
         mc:Ignorable="d"
-        Title="Kalendarz" Height="450" Width="1000">
+        Title="Kalendarz" Height="500" Width="1000">
     <Window.DataContext>
         <vm:MainViewModel x:Name="MainVM"/>
     </Window.DataContext>
@@ -21,21 +21,13 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="12*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition />
+                <RowDefinition Height="4*"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Specjalizacja :"/>
-                <TextBlock Grid.Column="2" Text="Lekarz :"/>
-            </Grid>
+            <view:Filtry Grid.Row="0" Margin="5" 
+                         Specjalizacje="{Binding Filtry.Specjalizcje}"/>
 
             <view:Miesiac Grid.Row="1" DzienMiesiaca="{Binding Miesiac.DniMiesiaca}"
                       Widoczny="{Binding Miesiac.Widoczny}" Margin="5"

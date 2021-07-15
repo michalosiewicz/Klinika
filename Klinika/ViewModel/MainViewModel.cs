@@ -14,13 +14,17 @@ namespace Klinika.ViewModel
     class MainViewModel : ViewModelBase
     {
         public MiesiacViewModel Miesiac { get; set; }
+        public FiltryViewModel Filtry { get; set; }
 
         public Terminarz Kalendarz { get; set; }
+        public Dane DaneZBazy { get; set; }
 
         public MainViewModel()
         {
             Kalendarz = new Terminarz();
+            DaneZBazy = new Dane();
             Miesiac = new MiesiacViewModel(Kalendarz);
+            Filtry = new FiltryViewModel(DaneZBazy);
         }
 
         private ICommand nastepnyMiesiac;
