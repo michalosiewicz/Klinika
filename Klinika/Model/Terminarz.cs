@@ -10,6 +10,7 @@ namespace Klinika.Model
 {
     class Terminarz
     {
+        private TerminarzWizyt terminarzWizyt;
         public DateTime DataAktualna {get;set;}
         public DateTime DataKalendarza { get; set; }
         public Calendar Kalendarz { get; set; }
@@ -25,6 +26,7 @@ namespace Klinika.Model
 
         public Terminarz()
         {
+            terminarzWizyt = new TerminarzWizyt();
             DataAktualna = DateTime.Now;
             Kalendarz = new GregorianCalendar();
             UluzKalendarz(DataAktualna.Year,DataAktualna.Month);
@@ -69,18 +71,11 @@ namespace Klinika.Model
         }
         public bool DniDostepne(int numerDnia)
         {
-            AktualizujDate();
-            if (NazwaMiesiaca == NazwyMiesiecy.NazwaMiesiaca(DataAktualna.Month) + " " + DataAktualna.Year)
-            {
-                numerDnia++;
-                numerDnia -= pierwszyDzienMiesiaca;
-                if (numerDnia < DataAktualna.Day)
-                    return false;
-                else
-                    return true;
-            }
-            else
+            numerDnia++;
+            numerDnia -= pierwszyDzienMiesiaca;
+            if (terminarzWizyt.DostepneDni(numerDnia, DataKalendarza.Year, DataKalendarza.Month))
                 return true;
+            return false;
         }
         public void NastepnyMiesiac(int przesuniecie)
         {

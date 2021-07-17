@@ -92,6 +92,7 @@
     <Compile Include="Model\Dane.cs" />
     <Compile Include="Model\NazwyMiesiecy.cs" />
     <Compile Include="Model\Terminarz.cs" />
+    <Compile Include="Model\TerminarzWizyt.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClass\ViewModelBase.cs" />
     <Compile Include="ViewModel\FiltryViewModel.cs" />

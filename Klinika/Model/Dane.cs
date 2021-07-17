@@ -28,7 +28,7 @@ namespace Klinika.Model
                 foreach (var l in lekarze)
                     Lekarze.Add(l);
             }
-            catch (Exception)
+            catch
             {
                 MessageBox.Show("Brak dostępu do bazy danych.");
             }
