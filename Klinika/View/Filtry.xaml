@@ -26,6 +26,9 @@
                           HorizontalAlignment="Left"
                   ItemsSource="{Binding Specjalizacje,
                      RelativeSource={RelativeSource 
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                     SelectedItem="{Binding SpecjalizacjeText,
+                     RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
 
         </Grid>
@@ -40,7 +43,13 @@
                            Margin="5" HorizontalAlignment="Left" />
 
             <ComboBox Grid.Row="1" Margin="5" 
-                          HorizontalAlignment="Left"/>
+                          HorizontalAlignment="Left"
+                       ItemsSource="{Binding Lekarze,
+                     RelativeSource={RelativeSource 
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                      SelectedItem="{Binding LekarzeText,
+                     RelativeSource={RelativeSource 
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
 
         </Grid>
 

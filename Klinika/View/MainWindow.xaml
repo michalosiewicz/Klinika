@@ -27,7 +27,10 @@
             </Grid.RowDefinitions>
 
             <view:Filtry Grid.Row="0" Margin="5" 
-                         Specjalizacje="{Binding Filtry.Specjalizcje}"/>
+                         Specjalizacje="{Binding Filtry.Specjalizcje}"
+                         Lekarze="{Binding Filtry.Lekarze}"
+                         SpecjalizacjeText="{Binding Filtry.WybranaSpecjalizacja}"
+                         LekarzeText="{Binding Filtry.WybranyLekarz}"/>
 
             <view:Miesiac Grid.Row="1" DzienMiesiaca="{Binding Miesiac.DniMiesiaca}"
                       Widoczny="{Binding Miesiac.Widoczny}" Margin="5"

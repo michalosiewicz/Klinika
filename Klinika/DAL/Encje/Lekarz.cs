@@ -24,7 +24,7 @@ namespace Klinika.DAL.Encje
 
         public override string ToString()
         {
-            return $"Doktor {Nazwisko} {Imie}";
+            return $"{Nazwisko} {Imie}";
         }
 
     }

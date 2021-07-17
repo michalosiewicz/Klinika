@@ -20,6 +20,30 @@ namespace Klinika.ViewModel
             set { specjalizacje = value; onPropertyChanged(nameof(Specjalizcje)); }
         }
 
+        private List<string> lekarze;
+
+        public List<string> Lekarze
+        {
+            get { return lekarze; }
+            set { lekarze = value; onPropertyChanged(nameof(Lekarze)); }
+        }
+
+        private string wybranaSpecjalizacja;
+
+        public string WybranaSpecjalizacja
+        {
+            get { return wybranaSpecjalizacja; }
+            set { wybranaSpecjalizacja = value; onPropertyChanged(nameof(WybranaSpecjalizacja)); }
+        }
+
+        private string wybranyLekarz;
+
+        public string WybranyLekarz
+        {
+            get { return wybranyLekarz; }
+            set { wybranyLekarz = value; onPropertyChanged(nameof(WybranyLekarz)); }
+        }
+
         public FiltryViewModel(Dane d)
         {
             dane = d;
@@ -27,6 +51,13 @@ namespace Klinika.ViewModel
             Specjalizcje.Add("Dowolna");
             foreach(var s in dane.Specjalizacje)
                 Specjalizcje.Add(s.ToString());
+            
+            Lekarze = new List<string>();
+            Lekarze.Add("Dowolny");
+            foreach (var l in dane.Lekarze)
+                Lekarze.Add(l.ToString());
+            WybranaSpecjalizacja = "Dowolna";
+            WybranyLekarz = "Dowolny";
         }
     }
 }

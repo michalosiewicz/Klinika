@@ -33,5 +33,32 @@ namespace Klinika.View
             get { return (List<string>)GetValue(SpecjalizacjeDP); }
             set { SetValue(SpecjalizacjeDP, value); }
         }
+
+        public static readonly DependencyProperty LekarzeDP =
+            DependencyProperty.Register(nameof(Lekarze), typeof(List<string>), typeof(Filtry));
+
+        public List<string> Lekarze
+        {
+            get { return (List<string>)GetValue(LekarzeDP); }
+            set { SetValue(LekarzeDP, value); }
+        }
+
+        public static readonly DependencyProperty SpecjalizacjeTextDP =
+            DependencyProperty.Register(nameof(SpecjalizacjeText), typeof(string), typeof(Filtry));
+
+        public string SpecjalizacjeText
+        {
+            get { return (string)GetValue(SpecjalizacjeTextDP); }
+            set { SetValue(SpecjalizacjeTextDP, value); }
+        }
+
+        public static readonly DependencyProperty LekarzeTextDP =
+            DependencyProperty.Register(nameof(LekarzeText), typeof(string), typeof(Filtry));
+
+        public string LekarzeText
+        {
+            get { return (string)GetValue(LekarzeTextDP); }
+            set { SetValue(LekarzeTextDP, value); }
+        }
     }
 }
