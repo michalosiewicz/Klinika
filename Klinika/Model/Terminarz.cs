@@ -77,6 +77,14 @@ namespace Klinika.Model
                 return true;
             return false;
         }
+
+        public string WybranoDzien(int numerDnia)
+        {
+            numerDnia++;
+            numerDnia -= pierwszyDzienMiesiaca;
+            return numerDnia.ToString() +" "+ NazwyMiesiecy.NazwaMiesiaca(DataKalendarza.Month) +" "+ DataKalendarza.Year;
+        }
+
         public void NastepnyMiesiac(int przesuniecie)
         {
             int rok = DataKalendarza.Year;

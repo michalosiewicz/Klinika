@@ -7,8 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
 
-        <ListBox ItemsSource="{Binding Wizyty,
+        <TextBlock Text="{Binding Data,
+                     RelativeSource={RelativeSource 
+                     Mode=FindAncestor,
+                     AncestorType={x:Type UserControl}}}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <ListBox Grid.Row="2" ItemsSource="{Binding Wizyty,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
 

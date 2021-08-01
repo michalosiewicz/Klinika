@@ -53,7 +53,8 @@
         
 
             <view:Dzien Grid.Column="1" Margin="5" 
-                        Wizyty="{Binding Dzien.Wizyty}"/>
+                        Wizyty="{Binding Dzien.Wizyty}"
+                        Data="{Binding Dzien.Data}"/>
 
     </Grid>
 </Window>

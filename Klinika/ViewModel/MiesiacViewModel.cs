@@ -14,6 +14,8 @@ namespace Klinika.ViewModel
     class MiesiacViewModel:ViewModelBase
     {
         private Terminarz terminarz;
+        private DzienViewModel dzien;
+
 
 
         private uint[] dniMiesiaca;
@@ -49,15 +51,16 @@ namespace Klinika.ViewModel
             get
             {
                 return wybranoDzien ?? (wybranoDzien = new RelayCommand(
-                    p => { MessageBox.Show("Click"); },
+                    p => { dzien.Aktualizuj(terminarz.WybranoDzien(int.Parse(p.ToString()))); },
                     p =>  terminarz.DniDostepne(int.Parse(p.ToString()))
                     )) ;
             }
         }
 
-        public MiesiacViewModel(Terminarz t)
+        public MiesiacViewModel(Terminarz t,DzienViewModel d)
         {
             terminarz = t;
+            dzien = d;
             DniMiesiaca = terminarz.DniMiesaca;
             Widoczny = terminarz.Widoczne;
             NazwaMiesiaca = terminarz.NazwaMiesiaca;

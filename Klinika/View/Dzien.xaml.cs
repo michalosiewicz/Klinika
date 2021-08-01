@@ -33,5 +33,14 @@ namespace Klinika.View
             get { return (List<string>)GetValue(WizytyDP); }
             set { SetValue(WizytyDP, value); }
         }
+
+        public static readonly DependencyProperty DataDP =
+            DependencyProperty.Register(nameof(Data), typeof(string), typeof(Dzien));
+
+        public string Data
+        {
+            get { return (string)GetValue(DataDP); }
+            set { SetValue(DataDP, value); }
+        }
     }
 }

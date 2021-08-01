@@ -16,5 +16,18 @@ namespace Klinika.ViewModel
             get { return wizyty; }
             set { wizyty = value; onPropertyChanged(nameof(Wizyty)); }
         }
+
+        private string data;
+
+        public string Data
+        {
+            get { return data; }
+            set { data = value; onPropertyChanged(nameof(Data)); }
+        }
+
+        public void Aktualizuj(string data)
+        {
+            Data = data;
+        }
     }
 }

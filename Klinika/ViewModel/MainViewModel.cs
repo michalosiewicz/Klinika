@@ -24,9 +24,9 @@ namespace Klinika.ViewModel
         {
             Kalendarz = new Terminarz();
             DaneZBazy = new Dane();
-            Miesiac = new MiesiacViewModel(Kalendarz);
-            Filtry = new FiltryViewModel(DaneZBazy);
             Dzien = new DzienViewModel();
+            Miesiac = new MiesiacViewModel(Kalendarz,Dzien);
+            Filtry = new FiltryViewModel(DaneZBazy);
         }
 
         private ICommand nastepnyMiesiac;
