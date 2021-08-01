@@ -95,6 +95,7 @@
     <Compile Include="Model\TerminarzWizyt.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClass\ViewModelBase.cs" />
+    <Compile Include="ViewModel\DzienViewModel.cs" />
     <Compile Include="ViewModel\FiltryViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MiesiacViewModel.cs" />

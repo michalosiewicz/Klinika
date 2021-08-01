@@ -7,6 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+
+        <ListBox ItemsSource="{Binding Wizyty,
+                     RelativeSource={RelativeSource 
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
+
     </Grid>
 </UserControl>

@@ -24,5 +24,14 @@ namespace Klinika.View
         {
             InitializeComponent();
         }
+
+        public static readonly DependencyProperty WizytyDP =
+            DependencyProperty.Register(nameof(Wizyty), typeof(List<string>), typeof(Dzien));
+
+        public List<string> Wizyty
+        {
+            get { return (List<string>)GetValue(WizytyDP); }
+            set { SetValue(WizytyDP, value); }
+        }
     }
 }
