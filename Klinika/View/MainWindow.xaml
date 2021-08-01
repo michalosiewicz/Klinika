@@ -8,14 +8,14 @@
         xmlns:view="clr-namespace:Klinika.View"
         xmlns:vm="clr-namespace:Klinika.ViewModel"
         mc:Ignorable="d"
-        Title="Kalendarz" Height="500" Width="1000">
+        Title="Kalendarz" Height="500" Width="800">
     <Window.DataContext>
         <vm:MainViewModel x:Name="MainVM"/>
     </Window.DataContext>
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 

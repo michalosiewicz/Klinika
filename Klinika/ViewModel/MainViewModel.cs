@@ -16,17 +16,15 @@ namespace Klinika.ViewModel
         public MiesiacViewModel Miesiac { get; set; }
         public FiltryViewModel Filtry { get; set; }
         public DzienViewModel Dzien { get; set; }
-
-        public Terminarz Kalendarz { get; set; }
-        public Dane DaneZBazy { get; set; }
+        
+        public Model MainModel { get; set; }
 
         public MainViewModel()
         {
-            Kalendarz = new Terminarz();
-            DaneZBazy = new Dane();
+            MainModel = new Model();
             Dzien = new DzienViewModel();
-            Miesiac = new MiesiacViewModel(Kalendarz,Dzien);
-            Filtry = new FiltryViewModel(DaneZBazy);
+            Miesiac = new MiesiacViewModel(MainModel.Kalendarz,Dzien);
+            Filtry = new FiltryViewModel(MainModel.DaneZBazy);
         }
 
         private ICommand nastepnyMiesiac;
@@ -36,7 +34,7 @@ namespace Klinika.ViewModel
             get
             {
                 return nastepnyMiesiac ?? (nastepnyMiesiac = new RelayCommand(
-                    p => { Kalendarz.NastepnyMiesiac(1); Miesiac.Aktualizacja(); },
+                    p => { MainModel.Kalendarz.NastepnyMiesiac(1); Miesiac.Aktualizacja(); },
                     p => true
                     )) ;
             }
@@ -49,8 +47,8 @@ namespace Klinika.ViewModel
             get
             {
                 return poprzedniMiesiac ?? (poprzedniMiesiac = new RelayCommand(
-                    p => { Kalendarz.NastepnyMiesiac(-1); Miesiac.Aktualizacja(); },
-                    p => Kalendarz.CzyMoznaZmienicMiesiac(-1)
+                    p => { MainModel.Kalendarz.NastepnyMiesiac(-1); Miesiac.Aktualizacja(); },
+                    p => MainModel.Kalendarz.CzyMoznaZmienicMiesiac(-1)
                     )) ;
             }
         }
