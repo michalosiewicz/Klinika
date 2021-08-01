@@ -51,7 +51,10 @@ namespace Klinika.ViewModel
             get
             {
                 return wybranoDzien ?? (wybranoDzien = new RelayCommand(
-                    p => { dzien.Aktualizuj(terminarz.WybranoDzien(int.Parse(p.ToString()))); },
+                    p => { dzien.Aktualizuj(
+                        terminarz.WybranoDzien(int.Parse(p.ToString())),
+                        terminarz.WizytyDanegoDnia(int.Parse(p.ToString()))); },
+                    
                     p =>  terminarz.DniDostepne(int.Parse(p.ToString()))
                     )) ;
             }

@@ -39,5 +39,17 @@ namespace Klinika.Model
             return false;
         }
 
+        public List<string> ListaWizyt(int numerDnia, int rok, int miesiac)
+        {
+            List<string> listaWizyt = new List<string>();
+            foreach (var w in Wizyty)
+            {
+                DateTime data = w.Data;
+                if (data.Year == rok && data.Month == miesiac && data.Day == numerDnia)
+                    listaWizyt.Add(w.ToString());
+            }
+            return listaWizyt;
+        }
+
     }
 }

@@ -25,9 +25,10 @@ namespace Klinika.ViewModel
             set { data = value; onPropertyChanged(nameof(Data)); }
         }
 
-        public void Aktualizuj(string data)
+        public void Aktualizuj(string data,List<string> wizyty)
         {
             Data = data;
+            Wizyty = wizyty;
         }
     }
 }

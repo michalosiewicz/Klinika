@@ -21,5 +21,10 @@ namespace Klinika.DAL.Encje
             Pesel = reader["pesel"].ToString();
             Data = DateTime.Parse(reader["data"].ToString());
         }
+
+        public override string ToString()
+        {
+            return Data.ToShortTimeString();
+        }
     }
 }
