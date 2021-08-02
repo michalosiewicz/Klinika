@@ -60,5 +60,37 @@ namespace Klinika.View
             get { return (string)GetValue(LekarzeTextDP); }
             set { SetValue(LekarzeTextDP, value); }
         }
+
+        public static readonly DependencyProperty WybranoFiltryDP =
+            DependencyProperty.Register(nameof(WybranoFiltry), typeof(ICommand), typeof(Filtry));
+        public ICommand WybranoFiltry
+        {
+            get { return (ICommand)GetValue(WybranoFiltryDP); }
+            set { SetValue(WybranoFiltryDP, value); }
+        }
+
+        public static readonly RoutedEvent ZmianaSpecjalizacjiEvent =
+            EventManager.RegisterRoutedEvent("ZmianaSpecjalizacji",
+                    RoutingStrategy.Bubble, typeof(RoutedEventHandler),
+                    typeof(Filtry));
+
+        public event RoutedEventHandler ZmianaSpecjalizacji
+        {
+            add { AddHandler(ZmianaSpecjalizacjiEvent, value); }
+            remove { RemoveHandler(ZmianaSpecjalizacjiEvent, value); }
+        }
+
+        void RaiseZmianaSpecjalizacji()
+        {
+            //argument zdarzenia
+            RoutedEventArgs newEventArgs =
+                    new RoutedEventArgs(Filtry.ZmianaSpecjalizacjiEvent);
+            //wywołanie zdarzenia
+            RaiseEvent(newEventArgs);
+        }
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RaiseZmianaSpecjalizacji();
+        }
     }
 }

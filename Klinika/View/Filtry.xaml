@@ -29,7 +29,8 @@
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
                      SelectedItem="{Binding SpecjalizacjeText,
                      RelativeSource={RelativeSource 
-                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                      SelectionChanged="ComboBox_SelectionChanged"/>
 
         </Grid>
 
@@ -54,6 +55,9 @@
         </Grid>
 
         <Button Grid.Column="2" Content="Zastosuj"
-                        Margin="5" />
+                        Margin="5" Command="{Binding WybranoFiltry,
+                     RelativeSource={RelativeSource 
+                     Mode=FindAncestor,
+                     AncestorType={x:Type UserControl}}}"/>
     </Grid>
 </UserControl>

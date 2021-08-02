@@ -16,6 +16,7 @@ namespace Klinika.Model
         public ObservableCollection<Specjalizacja> Specjalizacje { get; set; } = new ObservableCollection<Specjalizacja>();
         public ObservableCollection<Lekarz> Lekarze { get; set; } = new ObservableCollection<Lekarz>();
         public ObservableCollection<Wizyta> Wizyty { get; set; } = new ObservableCollection<Wizyta>();
+        public ObservableCollection<Posiada> Posiadaja { get; set; } = new ObservableCollection<Posiada>();
 
         public Dane()
         {
@@ -32,6 +33,10 @@ namespace Klinika.Model
                 var wizyty = RepozytoriumWizyt.PobierzWszystkieWizyty();
                 foreach (var w in wizyty)
                     Wizyty.Add(w);
+
+                var posiadaja = RepozytoriumPosiadaja.PobierzWszystkiePosiadania();
+                foreach (var p in posiadaja)
+                    Posiadaja.Add(p);
             }
             catch
             {
@@ -47,6 +52,23 @@ namespace Klinika.Model
                     return l;
             }
             return null;
+        }
+
+        public List<string> ZnajdzLekarzyPoSpecjalizacji(string spec)
+        {
+            if (spec == "Dowolna")
+                return ListaLekarzy();
+            List<string> lista = new List<string>();
+            lista.Add("Dowolny");
+            foreach (var l in Lekarze)
+            {
+                foreach (var p in Posiadaja)
+                {
+                    if (l.Id == p.IdLekarza && p.Nazwa == spec)
+                        lista.Add(l.ToString());
+                }
+            }
+            return lista;
         }
 
         public bool DostepneDni(int numerDnia, int rok, int miesiac)
@@ -76,6 +98,28 @@ namespace Klinika.Model
                 }
             }
             return listaWizyt;
+        }
+
+        public List<string> ListaSpecjalizacji()
+        {
+            List<string> listaSpecjalizacji = new List<string>();
+            listaSpecjalizacji.Add("Dowolna");
+            foreach(var s in Specjalizacje)
+            {
+                listaSpecjalizacji.Add(s.ToString());
+            }
+            return listaSpecjalizacji;
+        }
+
+        public List<string> ListaLekarzy()
+        {
+            List<string> listaLekarzy = new List<string>();
+            listaLekarzy.Add("Dowolny");
+            foreach (var l in Lekarze)
+            {
+                listaLekarzy.Add(l.ToString());
+            }
+            return listaLekarzy;
         }
     }
 }

@@ -8,6 +8,9 @@ namespace Klinika.ViewModel
 {
     using BaseClass;
     using Model;
+    using System.Windows;
+    using System.Windows.Input;
+
     class FiltryViewModel : ViewModelBase
     {
         private Dane dane;
@@ -44,18 +47,46 @@ namespace Klinika.ViewModel
             set { wybranyLekarz = value; onPropertyChanged(nameof(WybranyLekarz)); }
         }
 
+        private ICommand wybranoFiltry;
+        public ICommand WybranoFiltry
+        {
+
+            get
+            {
+                return wybranoFiltry ?? (wybranoFiltry = new RelayCommand(
+                    p =>
+                    {
+                        MessageBox.Show(WybranaSpecjalizacja + " " + WybranyLekarz);
+                    },
+
+                    p => true
+                    )) ;
+            }
+        }
+
+        private ICommand zmianaSpecjalizacji;
+        public ICommand ZmianaSpecjalizacji
+        {
+
+            get
+            {
+                return zmianaSpecjalizacji ?? (zmianaSpecjalizacji = new RelayCommand(
+                    p =>
+                    {
+                        Lekarze = dane.ZnajdzLekarzyPoSpecjalizacji(WybranaSpecjalizacja);
+                    },
+
+                    p => true
+                    ));
+            }
+        }
+
         public FiltryViewModel(Dane d)
         {
             dane = d;
-            Specjalizcje = new List<string>();
-            Specjalizcje.Add("Dowolna");
-            foreach(var s in dane.Specjalizacje)
-                Specjalizcje.Add(s.ToString());
-            
-            Lekarze = new List<string>();
-            Lekarze.Add("Dowolny");
-            foreach (var l in dane.Lekarze)
-                Lekarze.Add(l.ToString());
+            Specjalizcje = dane.ListaSpecjalizacji();
+            Lekarze = dane.ListaLekarzy();
+
             WybranaSpecjalizacja = "Dowolna";
             WybranyLekarz = "Dowolny";
         }
