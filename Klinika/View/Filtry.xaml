@@ -27,7 +27,7 @@
                   ItemsSource="{Binding Specjalizacje,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
-                     SelectedItem="{Binding SpecjalizacjeText,
+                     SelectedIndex="{Binding SpecjalizacjeIndex,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
                       SelectionChanged="ComboBox_SelectionChanged"/>
@@ -48,9 +48,10 @@
                        ItemsSource="{Binding Lekarze,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
-                      SelectedItem="{Binding LekarzeText,
+                      SelectedIndex="{Binding LekarzeIndex,
                      RelativeSource={RelativeSource 
-                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                      SelectionChanged="ComboBox_SelectionChanged_1"/>
 
         </Grid>
 

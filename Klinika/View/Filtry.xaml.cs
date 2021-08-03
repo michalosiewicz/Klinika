@@ -43,22 +43,22 @@ namespace Klinika.View
             set { SetValue(LekarzeDP, value); }
         }
 
-        public static readonly DependencyProperty SpecjalizacjeTextDP =
-            DependencyProperty.Register(nameof(SpecjalizacjeText), typeof(string), typeof(Filtry));
+        public static readonly DependencyProperty SpecjalizacjeIndexDP =
+            DependencyProperty.Register(nameof(SpecjalizacjeIndex), typeof(int), typeof(Filtry));
 
-        public string SpecjalizacjeText
+        public int SpecjalizacjeIndex
         {
-            get { return (string)GetValue(SpecjalizacjeTextDP); }
-            set { SetValue(SpecjalizacjeTextDP, value); }
+            get { return (int)GetValue(SpecjalizacjeIndexDP); }
+            set { SetValue(SpecjalizacjeIndexDP, value); }
         }
 
-        public static readonly DependencyProperty LekarzeTextDP =
-            DependencyProperty.Register(nameof(LekarzeText), typeof(string), typeof(Filtry));
+        public static readonly DependencyProperty LekarzeIndexDP =
+            DependencyProperty.Register(nameof(LekarzeIndex), typeof(int), typeof(Filtry));
 
-        public string LekarzeText
+        public int LekarzeIndex
         {
-            get { return (string)GetValue(LekarzeTextDP); }
-            set { SetValue(LekarzeTextDP, value); }
+            get { return (int)GetValue(LekarzeIndexDP); }
+            set { SetValue(LekarzeIndexDP, value); }
         }
 
         public static readonly DependencyProperty WybranoFiltryDP =
@@ -88,9 +88,34 @@ namespace Klinika.View
             //wywołanie zdarzenia
             RaiseEvent(newEventArgs);
         }
+
+        public static readonly RoutedEvent ZmianaLekarzaEvent =
+            EventManager.RegisterRoutedEvent("ZmianaLekarza",
+                    RoutingStrategy.Bubble, typeof(RoutedEventHandler),
+                    typeof(Filtry));
+
+        public event RoutedEventHandler ZmianaLekarza
+        {
+            add { AddHandler(ZmianaLekarzaEvent, value); }
+            remove { RemoveHandler(ZmianaLekarzaEvent, value); }
+        }
+
+        void RaiseZmianaLekarza()
+        {
+            //argument zdarzenia
+            RoutedEventArgs newEventArgs =
+                    new RoutedEventArgs(Filtry.ZmianaLekarzaEvent);
+            //wywołanie zdarzenia
+            RaiseEvent(newEventArgs);
+        }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RaiseZmianaSpecjalizacji();
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            RaiseZmianaLekarza();
         }
     }
 }

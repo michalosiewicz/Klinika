@@ -10,11 +10,13 @@ namespace Klinika.Model
     {
         public Dane DaneZBazy { get; set; }
         public Terminarz Kalendarz { get; set; }
+        public Filtry Filtry { get; set; }
 
         public Model()
         {
             DaneZBazy = new Dane();
             Kalendarz = new Terminarz(DaneZBazy);
+            Filtry = new Filtry(DaneZBazy);
         }
     }
 }

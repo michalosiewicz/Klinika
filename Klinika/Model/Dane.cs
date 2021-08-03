@@ -54,18 +54,29 @@ namespace Klinika.Model
             return null;
         }
 
-        public List<string> ZnajdzLekarzyPoSpecjalizacji(string spec)
+        public List<Lekarz> ZnajdzLekarzyPoSpecjalizacji(Specjalizacja s)
         {
-            if (spec == "Dowolna")
-                return ListaLekarzy();
-            List<string> lista = new List<string>();
-            lista.Add("Dowolny");
+            List<Lekarz> lista = new List<Lekarz>();
             foreach (var l in Lekarze)
             {
                 foreach (var p in Posiadaja)
                 {
-                    if (l.Id == p.IdLekarza && p.Nazwa == spec)
-                        lista.Add(l.ToString());
+                    if (l.Id == p.IdLekarza && p.Nazwa == s.Nazwa)
+                        lista.Add(l);
+                }
+            }
+            return lista;
+        }
+
+        public List<Specjalizacja> ZnajdzSpecjalizacjeLekarzy(Lekarz l)
+        {
+            List<Specjalizacja> lista = new List<Specjalizacja>();
+            foreach (var s in Specjalizacje)
+            {
+                foreach (var p in Posiadaja)
+                {
+                    if (s.Nazwa == p.Nazwa && p.IdLekarza == l.Id)
+                        lista.Add(s);
                 }
             }
             return lista;

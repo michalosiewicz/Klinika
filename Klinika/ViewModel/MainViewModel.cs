@@ -24,7 +24,7 @@ namespace Klinika.ViewModel
             MainModel = new Model();
             Dzien = new DzienViewModel();
             Miesiac = new MiesiacViewModel(MainModel.Kalendarz,Dzien);
-            Filtry = new FiltryViewModel(MainModel.DaneZBazy);
+            Filtry = new FiltryViewModel(MainModel.Filtry);
         }
 
         private ICommand nastepnyMiesiac;

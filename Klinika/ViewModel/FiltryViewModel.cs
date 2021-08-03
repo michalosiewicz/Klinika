@@ -13,7 +13,7 @@ namespace Klinika.ViewModel
 
     class FiltryViewModel : ViewModelBase
     {
-        private Dane dane;
+        private Filtry filtry;
 
         private List<string> specjalizacje;
 
@@ -31,20 +31,20 @@ namespace Klinika.ViewModel
             set { lekarze = value; onPropertyChanged(nameof(Lekarze)); }
         }
 
-        private string wybranaSpecjalizacja;
+        private int indexSpecjalizacji;
 
-        public string WybranaSpecjalizacja
+        public int IndexSpecjalizacji
         {
-            get { return wybranaSpecjalizacja; }
-            set { wybranaSpecjalizacja = value; onPropertyChanged(nameof(WybranaSpecjalizacja)); }
+            get { return indexSpecjalizacji; }
+            set { indexSpecjalizacji = value; onPropertyChanged(nameof(IndexSpecjalizacji)); }
         }
 
-        private string wybranyLekarz;
+        private int indexLekarza;
 
-        public string WybranyLekarz
+        public int IndexLekarza
         {
-            get { return wybranyLekarz; }
-            set { wybranyLekarz = value; onPropertyChanged(nameof(WybranyLekarz)); }
+            get { return indexLekarza; }
+            set { indexLekarza = value; onPropertyChanged(nameof(IndexLekarza)); }
         }
 
         private ICommand wybranoFiltry;
@@ -56,7 +56,7 @@ namespace Klinika.ViewModel
                 return wybranoFiltry ?? (wybranoFiltry = new RelayCommand(
                     p =>
                     {
-                        MessageBox.Show(WybranaSpecjalizacja + " " + WybranyLekarz);
+                        MessageBox.Show(IndexSpecjalizacji + " " + IndexLekarza);
                     },
 
                     p => true
@@ -73,7 +73,7 @@ namespace Klinika.ViewModel
                 return zmianaSpecjalizacji ?? (zmianaSpecjalizacji = new RelayCommand(
                     p =>
                     {
-                        Lekarze = dane.ZnajdzLekarzyPoSpecjalizacji(WybranaSpecjalizacja);
+                        Lekarze = filtry.ZnajdzLekarzyPoSpecjalizacji(IndexSpecjalizacji);
                     },
 
                     p => true
@@ -81,14 +81,28 @@ namespace Klinika.ViewModel
             }
         }
 
-        public FiltryViewModel(Dane d)
+        private ICommand zmianaLekarza;
+        public ICommand ZmianaLekarza
         {
-            dane = d;
-            Specjalizcje = dane.ListaSpecjalizacji();
-            Lekarze = dane.ListaLekarzy();
 
-            WybranaSpecjalizacja = "Dowolna";
-            WybranyLekarz = "Dowolny";
+            get
+            {
+                return zmianaLekarza ?? (zmianaLekarza = new RelayCommand(
+                    p =>
+                    {
+                        Specjalizcje = filtry.ZnajdzSpecjalizacjeLekarzy(IndexLekarza);
+                    },
+
+                    p => true
+                    ));
+            }
+        }
+
+        public FiltryViewModel(Filtry f)
+        {
+            filtry = f;
+            Specjalizcje = filtry.ZnajdzSpecjalizacjeLekarzy(0);
+            Lekarze = filtry.ZnajdzLekarzyPoSpecjalizacji(0);
         }
     }
 }
