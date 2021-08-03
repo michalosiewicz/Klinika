@@ -12,12 +12,14 @@ namespace Klinika.Model
     class Filtry
     {
         private Dane dane;
+        private DostepneWizyty wizyta;
         public List<Specjalizacja> AktualneSpecjalizacje { get; set; }
         public List<Lekarz> AktualniLekarze { get; set; }
 
-        public Filtry(Dane d)
+        public Filtry(Dane d,DostepneWizyty w)
         {
             dane = d;
+            wizyta = w;
             AktualneSpecjalizacje = dane.Specjalizacje.ToList();
             AktualniLekarze = dane.Lekarze.ToList();
         }
@@ -46,6 +48,18 @@ namespace Klinika.Model
             foreach (var s in AktualneSpecjalizacje)
                 lista.Add(s.ToString());
             return lista;
+        }
+
+        public void WybranoFiltry(int indexSpecjalizacji,int indexLekarza)
+        {
+            if (indexSpecjalizacji > 0)
+                wizyta.WybranaSpecjalizacja = AktualneSpecjalizacje[indexSpecjalizacji - 1];
+            else
+                wizyta.WybranaSpecjalizacja = null;
+            if (indexLekarza > 0)
+                wizyta.WybranyLekarz = AktualniLekarze[indexLekarza - 1];
+            else
+                wizyta.WybranyLekarz = null;
         }
     }
 }

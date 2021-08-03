@@ -44,7 +44,7 @@ namespace Klinika.Model
             }
         }
 
-        private  Lekarz ZnajdzLekarzaPoID(uint id)
+        public  Lekarz ZnajdzLekarzaPoID(uint id)
         {
             foreach (var l in Lekarze)
             {
@@ -82,55 +82,14 @@ namespace Klinika.Model
             return lista;
         }
 
-        public bool DostepneDni(int numerDnia, int rok, int miesiac)
+        public bool CzyLekarzPosiadaSpecjalizacje(Specjalizacja s,Lekarz l)
         {
-            foreach (var w in Wizyty)
+            foreach(var p in Posiadaja)
             {
-                DateTime data = w.Data;
-                if (data.Year == rok && data.Month == miesiac && data.Day == numerDnia)
+                if (s.Nazwa == p.Nazwa && l.Id == p.IdLekarza)
                     return true;
             }
             return false;
-        }
-
-        public List<string> ListaWizyt(int numerDnia, int rok, int miesiac)
-        {
-            List<string> listaWizyt = new List<string>();
-            string statusWizyty="Dostępna";
-            foreach (var w in Wizyty)
-            {
-                DateTime data = w.Data;
-                if (data.Year == rok && data.Month == miesiac && data.Day == numerDnia)
-                {
-                    Lekarz l = ZnajdzLekarzaPoID(w.IdLekarza);
-                    if (w.Pesel != "")
-                        statusWizyty = "Zarezerwowana";
-                    listaWizyt.Add(w.ToString()+"  "+l.ToString()+"  "+l.Sala+"  "+statusWizyty);
-                }
-            }
-            return listaWizyt;
-        }
-
-        public List<string> ListaSpecjalizacji()
-        {
-            List<string> listaSpecjalizacji = new List<string>();
-            listaSpecjalizacji.Add("Dowolna");
-            foreach(var s in Specjalizacje)
-            {
-                listaSpecjalizacji.Add(s.ToString());
-            }
-            return listaSpecjalizacji;
-        }
-
-        public List<string> ListaLekarzy()
-        {
-            List<string> listaLekarzy = new List<string>();
-            listaLekarzy.Add("Dowolny");
-            foreach (var l in Lekarze)
-            {
-                listaLekarzy.Add(l.ToString());
-            }
-            return listaLekarzy;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Klinika.ViewModel
                 return wybranoFiltry ?? (wybranoFiltry = new RelayCommand(
                     p =>
                     {
-                        MessageBox.Show(IndexSpecjalizacji + " " + IndexLekarza);
+                        filtry.WybranoFiltry(IndexSpecjalizacji,IndexLekarza);
                     },
 
                     p => true
