@@ -30,5 +30,11 @@ namespace Klinika.ViewModel
             Data = data;
             Wizyty = wizyty;
         }
+
+        public void Reset()
+        {
+            Data = null;
+            Wizyty = new List<string>();
+        }
     }
 }

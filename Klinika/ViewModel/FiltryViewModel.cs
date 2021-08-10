@@ -14,6 +14,9 @@ namespace Klinika.ViewModel
     class FiltryViewModel : ViewModelBase
     {
         private Filtry filtry;
+        private Terminarz terminarz;
+        private MiesiacViewModel miesiac;
+        private DzienViewModel dzien;
 
         private List<string> specjalizacje;
 
@@ -57,6 +60,9 @@ namespace Klinika.ViewModel
                     p =>
                     {
                         filtry.WybranoFiltry(IndexSpecjalizacji,IndexLekarza);
+                        terminarz.PierwszyMiesac();
+                        miesiac.Aktualizacja();
+                        dzien.Reset();
                     },
 
                     p => true
@@ -98,9 +104,12 @@ namespace Klinika.ViewModel
             }
         }
 
-        public FiltryViewModel(Filtry f)
+        public FiltryViewModel(Filtry f,Terminarz t,MiesiacViewModel m,DzienViewModel d)
         {
             filtry = f;
+            terminarz = t;
+            miesiac = m;
+            dzien = d;
             Specjalizcje = filtry.ZnajdzSpecjalizacjeLekarzy(0);
             Lekarze = filtry.ZnajdzLekarzyPoSpecjalizacji(0);
         }

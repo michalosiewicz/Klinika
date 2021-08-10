@@ -29,12 +29,7 @@ namespace Klinika.Model
             wizyty = w;
             DataAktualna = DateTime.Now;
             Kalendarz = new GregorianCalendar();
-            UluzKalendarz(DataAktualna.Year,DataAktualna.Month);
-        }
-       
-        public void AktualizujDate()
-        {
-            DataAktualna = DateTime.Now;
+            UluzKalendarz(DataAktualna.Year, DataAktualna.Month);
         }
 
         private void UluzKalendarz(int rok,int miesiac)
@@ -114,6 +109,11 @@ namespace Klinika.Model
             UluzKalendarz(rok,miesiac);
         }
 
+        public void PierwszyMiesac()
+        {
+            UluzKalendarz(DataAktualna.Year, DataAktualna.Month);
+        }
+        
         public bool CzyMoznaZmienicMiesiac(int przesuniecie)
         {
             if (DataAktualna.Year == DataKalendarza.Year && DataKalendarza.Month + przesuniecie < DataAktualna.Month)
