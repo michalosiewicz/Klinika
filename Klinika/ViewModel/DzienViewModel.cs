@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace Klinika.ViewModel
 {
     using BaseClass;
+    using System.Windows;
+    using System.Windows.Input;
+
     class DzienViewModel : ViewModelBase
     {
         private List<string> wizyty;
@@ -25,6 +28,36 @@ namespace Klinika.ViewModel
             set { data = value; onPropertyChanged(nameof(Data)); }
         }
 
+        private int index=-1;
+
+        public int Index
+        {
+            get { return index; }
+            set { index = value; onPropertyChanged(nameof(Index)); }
+        }
+
+        private ICommand zmianaIndeksu;
+        public ICommand ZmianaIndeksu
+        {
+
+            get
+            {
+                return zmianaIndeksu ?? (zmianaIndeksu = new RelayCommand(
+                    p =>
+                    {
+                        if (Index > -1)
+                        {
+                            View.DodawaniePacjenta okno = new View.DodawaniePacjenta();
+                            okno.Show();
+                            // nie wiem czy dobrze
+                        }
+
+                    },
+
+                    p => true
+                    ));
+            }
+        }
         public void Aktualizuj(string data,List<string> wizyty)
         {
             Data = data;

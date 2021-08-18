@@ -16,7 +16,7 @@ namespace Klinika.ViewModel
         public MiesiacViewModel Miesiac { get; set; }
         public FiltryViewModel Filtry { get; set; }
         public DzienViewModel Dzien { get; set; }
-        
+        public DodawaniePacjentowViewModel DodawaniePacjentow {get;set;}
         public Model MainModel { get; set; }
 
         public MainViewModel()
@@ -25,6 +25,7 @@ namespace Klinika.ViewModel
             Dzien = new DzienViewModel();
             Miesiac = new MiesiacViewModel(MainModel.Kalendarz,Dzien);
             Filtry = new FiltryViewModel(MainModel.Filtry,MainModel.Kalendarz,Miesiac,Dzien);
+            DodawaniePacjentow = new DodawaniePacjentowViewModel(MainModel.DaneZBazy.ListaPacjentow());
         }
 
         private ICommand nastepnyMiesiac;

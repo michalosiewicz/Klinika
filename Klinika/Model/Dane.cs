@@ -17,6 +17,7 @@ namespace Klinika.Model
         public ObservableCollection<Lekarz> Lekarze { get; set; } = new ObservableCollection<Lekarz>();
         public ObservableCollection<Wizyta> Wizyty { get; set; } = new ObservableCollection<Wizyta>();
         public ObservableCollection<Posiada> Posiadaja { get; set; } = new ObservableCollection<Posiada>();
+        public ObservableCollection<Pacjent> Pacjenci { get; set; } = new ObservableCollection<Pacjent>();
 
         public Dane()
         {
@@ -37,6 +38,10 @@ namespace Klinika.Model
                 var posiadaja = RepozytoriumPosiadaja.PobierzWszystkiePosiadania();
                 foreach (var p in posiadaja)
                     Posiadaja.Add(p);
+
+                var pacjenci = RepozytoriumPacjenci.PobierzWszystkichPacjentow();
+                foreach (var p in pacjenci)
+                    Pacjenci.Add(p);
             }
             catch
             {
@@ -90,6 +95,17 @@ namespace Klinika.Model
                     return true;
             }
             return false;
+        }
+
+        public List<string> ListaPacjentow()
+        {
+            List<string> lista = new List<string>();
+            foreach(var p in Pacjenci)
+            {
+                lista.Add(p.ToString());
+            }
+
+            return lista;
         }
     }
 }

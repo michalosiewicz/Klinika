@@ -97,24 +97,39 @@
     <Compile Include="Model\Terminarz.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClass\ViewModelBase.cs" />
+    <Compile Include="ViewModel\DodawaniePacjentowViewModel.cs" />
     <Compile Include="ViewModel\DzienViewModel.cs" />
     <Compile Include="ViewModel\FiltryViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MiesiacViewModel.cs" />
+    <Compile Include="View\DodawaniePacjenta.xaml.cs">
+      <DependentUpon>DodawaniePacjenta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dzien.xaml.cs">
       <DependentUpon>Dzien.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Filtry.xaml.cs">
       <DependentUpon>Filtry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ListaPacjentow.xaml.cs">
+      <DependentUpon>ListaPacjentow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Miesiac.xaml.cs">
       <DependentUpon>Miesiac.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\DodawaniePacjenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Dzien.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Filtry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ListaPacjentow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

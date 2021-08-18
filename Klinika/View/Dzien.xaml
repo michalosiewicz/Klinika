@@ -43,7 +43,11 @@
 
         <ListBox Grid.Row="2" ItemsSource="{Binding Wizyty,
                      RelativeSource={RelativeSource 
-                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                 SelectedIndex="{Binding Index,
+                     RelativeSource={RelativeSource 
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                 SelectionChanged="ListBox_SelectionChanged"/>
 
     </Grid>
 </UserControl>

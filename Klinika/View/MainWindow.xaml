@@ -8,7 +8,7 @@
         xmlns:view="clr-namespace:Klinika.View"
         xmlns:vm="clr-namespace:Klinika.ViewModel"
         mc:Ignorable="d"
-        Title="Kalendarz" Height="500" Width="800">
+        Title="Kalendarz" Height="500" Width="800" ResizeMode="CanMinimize">
     <Window.DataContext>
         <vm:MainViewModel x:Name="MainVM"/>
     </Window.DataContext>
@@ -68,7 +68,14 @@
 
             <view:Dzien Grid.Column="1" Margin="5" 
                         Wizyty="{Binding Dzien.Wizyty}"
-                        Data="{Binding Dzien.Data}"/>
+                        Data="{Binding Dzien.Data}"
+                        Index="{Binding Dzien.Index,Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="ZmianaIndeksu">
+                        <i:InvokeCommandAction Command="{Binding Dzien.ZmianaIndeksu}"/>
+                    </i:EventTrigger>
+            </i:Interaction.Triggers>
+            </view:Dzien>
 
     </Grid>
 </Window>

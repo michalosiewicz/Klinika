@@ -42,5 +42,38 @@ namespace Klinika.View
             get { return (string)GetValue(DataDP); }
             set { SetValue(DataDP, value); }
         }
+
+        public static readonly DependencyProperty IndexDP =
+            DependencyProperty.Register(nameof(Index), typeof(int), typeof(Dzien));
+
+        public int Index
+        {
+            get { return (int)GetValue(IndexDP); }
+            set { SetValue(IndexDP, value); }
+        }
+
+        public static readonly RoutedEvent ZmianaIndeksuEvent =
+           EventManager.RegisterRoutedEvent("ZmianaIndeksu",
+                   RoutingStrategy.Bubble, typeof(RoutedEventHandler),
+                   typeof(Dzien));
+
+        public event RoutedEventHandler ZmianaIndeksu
+        {
+            add { AddHandler(ZmianaIndeksuEvent, value); }
+            remove { RemoveHandler(ZmianaIndeksuEvent, value); }
+        }
+
+        void RaiseZmianaIndeksu()
+        {
+            //argument zdarzenia
+            RoutedEventArgs newEventArgs =
+                    new RoutedEventArgs(Dzien.ZmianaIndeksuEvent);
+            //wywołanie zdarzenia
+            RaiseEvent(newEventArgs);
+        }
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RaiseZmianaIndeksu();
+        }
     }
 }

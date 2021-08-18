@@ -22,7 +22,7 @@ namespace Klinika.DAL.Encje
 
         public override string ToString()
         {
-            return $"{Nazwisko} {Imie}";
+            return $"{Nazwisko} {Imie} {Pesel}";
         }
     }
 }
