@@ -26,5 +26,22 @@ namespace Klinika.DAL.Repozytoria
             }
             return wizyty;
         }
+
+        public static bool EdytujWizyteWBazie(string pesel,uint idWizyty)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string EDYTUJ_WIZYTE = $"UPDATE wizyty SET pesel='{pesel}' WHERE id_w={idWizyty}";
+
+                MySqlCommand command = new MySqlCommand(EDYTUJ_WIZYTE, connection);
+                connection.Open();
+                var n = command.ExecuteNonQuery();
+                if (n == 1) stan = true;
+
+                connection.Close();
+            }
+            return stan;
+        }
     }
 }

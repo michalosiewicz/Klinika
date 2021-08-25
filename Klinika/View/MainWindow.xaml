@@ -57,9 +57,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Command="{Binding PoprzedniMiesiac}"
-                        Content="Poprzedni" Margin="5"/>
+                        Content="Poprzedni" Margin="5" FontWeight="Bold"/>
                 <Button Grid.Column="1" Command="{Binding NastepnyMiesiac}"
-                        Content="Następny" Margin="5"/>
+                        Content="Następny" Margin="5" FontWeight="Bold"/>
             </Grid>
             
         </Grid>

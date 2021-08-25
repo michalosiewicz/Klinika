@@ -22,10 +22,12 @@ namespace Klinika.ViewModel
         public MainViewModel()
         {
             MainModel = new Model();
-            Dzien = new DzienViewModel();
+            DodawaniePacjentow = DodawaniePacjentowViewModel.Instance;
+            DodawaniePacjentow.Pacjenci = MainModel.DaneZBazy.ListaPacjentow();
+            DodawaniePacjentow.DostepneWizyty = MainModel.Wizyty;
+            Dzien = new DzienViewModel(DodawaniePacjentow);
             Miesiac = new MiesiacViewModel(MainModel.Kalendarz,Dzien);
             Filtry = new FiltryViewModel(MainModel.Filtry,MainModel.Kalendarz,Miesiac,Dzien);
-            DodawaniePacjentow = new DodawaniePacjentowViewModel(MainModel.DaneZBazy.ListaPacjentow());
         }
 
         private ICommand nastepnyMiesiac;

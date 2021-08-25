@@ -30,7 +30,8 @@
                      SelectedIndex="{Binding SpecjalizacjeIndex,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
-                      SelectionChanged="ComboBox_SelectionChanged"/>
+                      SelectionChanged="ComboBox_SelectionChanged" 
+                      VerticalAlignment="Center" />
 
         </Grid>
 
@@ -51,7 +52,8 @@
                       SelectedIndex="{Binding LekarzeIndex,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
-                      SelectionChanged="ComboBox_SelectionChanged_1"/>
+                      SelectionChanged="ComboBox_SelectionChanged_1"
+                      VerticalAlignment="Center"/>
 
         </Grid>
 
@@ -59,6 +61,7 @@
                         Margin="5" Command="{Binding WybranoFiltry,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
-                     AncestorType={x:Type UserControl}}}"/>
+                     AncestorType={x:Type UserControl}}}" 
+                FontWeight="Bold"/>
     </Grid>
 </UserControl>

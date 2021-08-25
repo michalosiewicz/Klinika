@@ -107,5 +107,20 @@ namespace Klinika.Model
 
             return lista;
         }
+
+        public void AktualizujWizyty()
+        {
+            try
+            {
+                Wizyty = new ObservableCollection<Wizyta>();
+                var wizyty = RepozytoriumWizyt.PobierzWszystkieWizyty();
+                foreach (var w in wizyty)
+                    Wizyty.Add(w);
+            }
+            catch
+            {
+                MessageBox.Show("Brak dostępu do bazy danych.");
+            }
+        }
     }
 }

@@ -30,7 +30,8 @@
         <TextBlock Text="{Binding NazwaMiesiaca,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
-                     AncestorType={x:Type UserControl}}}"/>
+                     AncestorType={x:Type UserControl}}}" 
+                   FontWeight="Bold" FontSize="14" Margin="2"/>
 
         <Grid Grid.Row="1">
 

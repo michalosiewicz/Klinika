@@ -14,6 +14,7 @@ namespace Klinika.ViewModel
     {
         private List<string> wizyty;
 
+        private DodawaniePacjentowViewModel dodawanie;
         public List<string> Wizyty
         {
             get { return wizyty; }
@@ -47,9 +48,8 @@ namespace Klinika.ViewModel
                     {
                         if (Index > -1)
                         {
-                            View.DodawaniePacjenta okno = new View.DodawaniePacjenta();
-                            okno.Show();
-                            // nie wiem czy dobrze
+                            dodawanie.StworzOkno();
+                            dodawanie.IndeksWizyty = Index;
                         }
 
                     },
@@ -68,6 +68,11 @@ namespace Klinika.ViewModel
         {
             Data = null;
             Wizyty = new List<string>();
+        }
+
+        public DzienViewModel(DodawaniePacjentowViewModel d)
+        {
+            dodawanie = d;
         }
     }
 }

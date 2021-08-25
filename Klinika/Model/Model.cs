@@ -16,7 +16,8 @@ namespace Klinika.Model
         public Model()
         {
             DaneZBazy = new Dane();
-            Wizyty = new DostepneWizyty(DaneZBazy);
+            Wizyty = DostepneWizyty.Instance;
+            Wizyty.Dane = DaneZBazy;
             Filtry = new Filtry(DaneZBazy,Wizyty);
             Kalendarz = new Terminarz(Wizyty);
         }
