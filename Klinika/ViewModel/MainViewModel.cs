@@ -16,16 +16,13 @@ namespace Klinika.ViewModel
         public MiesiacViewModel Miesiac { get; set; }
         public FiltryViewModel Filtry { get; set; }
         public DzienViewModel Dzien { get; set; }
-        public DodawaniePacjentowViewModel DodawaniePacjentow {get;set;}
         public Model MainModel { get; set; }
 
         public MainViewModel()
         {
-            MainModel = new Model();
-            DodawaniePacjentow = DodawaniePacjentowViewModel.Instance;
-            DodawaniePacjentow.Pacjenci = MainModel.DaneZBazy.ListaPacjentow();
-            DodawaniePacjentow.DostepneWizyty = MainModel.Wizyty;
-            Dzien = new DzienViewModel(DodawaniePacjentow);
+            MainModel = Model.Instance;
+            
+            Dzien = new DzienViewModel(MainModel.Kalendarz,MainModel.Wizyty);
             Miesiac = new MiesiacViewModel(MainModel.Kalendarz,Dzien);
             Filtry = new FiltryViewModel(MainModel.Filtry,MainModel.Kalendarz,Miesiac,Dzien);
         }

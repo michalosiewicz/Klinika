@@ -32,7 +32,7 @@ namespace Klinika.DAL.Repozytoria
             bool stan = false;
             using (var connection = DBConnection.Instance.Connection)
             {
-                string EDYTUJ_WIZYTE = $"UPDATE wizyty SET pesel='{pesel}' WHERE id_w={idWizyty}";
+                string EDYTUJ_WIZYTE = $"UPDATE wizyty SET pesel={pesel} WHERE id_w={idWizyty}";
 
                 MySqlCommand command = new MySqlCommand(EDYTUJ_WIZYTE, connection);
                 connection.Open();

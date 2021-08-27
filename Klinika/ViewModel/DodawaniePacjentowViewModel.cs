@@ -13,48 +13,14 @@ namespace Klinika.ViewModel
 
     class DodawaniePacjentowViewModel:ViewModelBase
     {
+        public ListaPacjentowViewModel ListaPacjentow { get; set; }
+        public Model MainModel { get; set; }
 
-        private View.DodawaniePacjenta okno;
-
-        public DostepneWizyty DostepneWizyty { get; set; }
-
-        public int IndeksWizyty { get; set; }
-
-        private List<string> pacjenci;
-
-        public List<string> Pacjenci
+        public DodawaniePacjentowViewModel()
         {
-            get { return pacjenci; }
-            set { pacjenci = value; onPropertyChanged(nameof(Pacjenci)); }
-        }
+            MainModel = Model.Instance;
 
-        private int indeks=-1;
-
-        public int Indeks
-        {
-            get { return indeks; }
-            set { indeks = value; onPropertyChanged(nameof(Indeks)); }
-        }
-
-        //SINGLETON
-        private static DodawaniePacjentowViewModel instance = null;
-        public static DodawaniePacjentowViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new DodawaniePacjentowViewModel();
-
-                }
-                return instance;
-            }
-        }
-
-        public void StworzOkno()
-        {
-            okno = new View.DodawaniePacjenta();
-            okno.Show();
+            ListaPacjentow = new ListaPacjentowViewModel(MainModel.DaneZBazy.ListaPacjentow());
         }
 
         private ICommand anuluj;
@@ -64,7 +30,9 @@ namespace Klinika.ViewModel
             get
             {
                 return anuluj ?? (anuluj = new RelayCommand(
-                    p => { okno.Close(); }, // niepoprawnie
+                    p => {
+                        App.OknoDodaniaPacjenta.Close();
+                    },
                     p => true
                     ));
             }
@@ -77,10 +45,12 @@ namespace Klinika.ViewModel
             get
             {
                 return zapisz ?? (zapisz = new RelayCommand(
-                    p => { DostepneWizyty.ZapiszPacjentaNaWizyte(IndeksWizyty, Indeks);
-                        okno.Close();
+                    p =>
+                    {
+                        MainModel.Wizyty.ZapiszPacjentaNaWizyte(ListaPacjentow.Indeks);
+                        App.OknoDodaniaPacjenta.Close();
                     },
-                    p => true
+                    p => ListaPacjentow.Indeks>-1
                     ));
             }
         }

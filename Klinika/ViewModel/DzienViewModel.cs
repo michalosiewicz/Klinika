@@ -9,12 +9,17 @@ namespace Klinika.ViewModel
     using BaseClass;
     using System.Windows;
     using System.Windows.Input;
+    using Model;
 
     class DzienViewModel : ViewModelBase
     {
+        private Terminarz terminarz;
+
+        private DostepneWizyty dostepneWizyty;
+        public int NumerDnia { get; set; }
+
         private List<string> wizyty;
 
-        private DodawaniePacjentowViewModel dodawanie;
         public List<string> Wizyty
         {
             get { return wizyty; }
@@ -48,8 +53,23 @@ namespace Klinika.ViewModel
                     {
                         if (Index > -1)
                         {
-                            dodawanie.StworzOkno();
-                            dodawanie.IndeksWizyty = Index;
+                            dostepneWizyty.IndeksWizyty = Index;
+
+                            if (dostepneWizyty.CzyWizytaJestZajeta())
+                            {
+                                var result=MessageBox.Show("Czy chcesz usunąć pacjenta z wybranej wizyty?",
+                                    "Usuń pacjenta",MessageBoxButton.YesNo);
+                                if(result==MessageBoxResult.Yes)
+                                    dostepneWizyty.UsunPacjnetaZWizyty();
+                                Wizyty = terminarz.WizytyDanegoDnia(NumerDnia);
+                            }
+                            else
+                            {
+                                App.OknoDodaniaPacjenta = new View.DodawaniePacjenta();
+                                App.OknoDodaniaPacjenta.ShowDialog();
+                                Wizyty = terminarz.WizytyDanegoDnia(NumerDnia);
+                            }
+                            Index = -1;
                         }
 
                     },
@@ -70,9 +90,15 @@ namespace Klinika.ViewModel
             Wizyty = new List<string>();
         }
 
-        public DzienViewModel(DodawaniePacjentowViewModel d)
+        public void Aktualizuj()
         {
-            dodawanie = d;
+            Wizyty = terminarz.WizytyDanegoDnia(NumerDnia);
+        }
+
+        public DzienViewModel(Terminarz t,DostepneWizyty dW)
+        {
+            terminarz = t;
+            dostepneWizyty = dW;
         }
     }
 }

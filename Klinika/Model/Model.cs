@@ -13,11 +13,21 @@ namespace Klinika.Model
         public Filtry Filtry { get; set; }
         public DostepneWizyty Wizyty { get; set; }
 
-        public Model()
+        private static Model instance = null;
+        public static Model Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new Model();
+                return instance;
+            }
+        }
+
+        private Model()
         {
             DaneZBazy = new Dane();
-            Wizyty = DostepneWizyty.Instance;
-            Wizyty.Dane = DaneZBazy;
+            Wizyty = new DostepneWizyty(DaneZBazy);
             Filtry = new Filtry(DaneZBazy,Wizyty);
             Kalendarz = new Terminarz(Wizyty);
         }

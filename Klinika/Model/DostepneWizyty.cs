@@ -12,29 +12,20 @@ namespace Klinika.Model
 
     class DostepneWizyty
     {
-        public Dane Dane { get; set; }
+        private Dane dane;
         public Specjalizacja WybranaSpecjalizacja { get; set; }
         public Lekarz WybranyLekarz { get; set; }
         public List<Wizyta> AktualneWizyty { get; set; }
+        public int IndeksWizyty { get; set; }
 
-        //SINGLETON
-        private static DostepneWizyty instance = null;
-        public static DostepneWizyty Instance
+        public DostepneWizyty(Dane d)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new DostepneWizyty();
-                    
-                }
-                return instance;
-            }
+            dane = d;
         }
 
         public bool DostepneDni(int numerDnia, int rok, int miesiac)
         {
-            foreach (var w in Dane.Wizyty)
+            foreach (var w in dane.Wizyty)
             {
                 DateTime data = w.Data;
                 if (data.Year == rok && data.Month == miesiac && data.Day == numerDnia)
@@ -43,7 +34,7 @@ namespace Klinika.Model
                         return true;
                     if (WybranyLekarz == null)
                     {
-                        if (Dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, Dane.ZnajdzLekarzaPoID(w.IdLekarza)))
+                        if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
                             return true;
                     }
                     else
@@ -62,7 +53,7 @@ namespace Klinika.Model
             AktualneWizyty = new List<Wizyta>();
             string statusWizyty;
             bool zgodnoscZFiltrem;
-            foreach (var w in Dane.Wizyty)
+            foreach (var w in dane.Wizyty)
             {
                 statusWizyty = "Dostępna";
                 zgodnoscZFiltrem = false;
@@ -73,7 +64,7 @@ namespace Klinika.Model
                         zgodnoscZFiltrem= true;
                     else if (WybranyLekarz == null)
                     {
-                        if (Dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, Dane.ZnajdzLekarzaPoID(w.IdLekarza)))
+                        if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
                             zgodnoscZFiltrem= true;
                     }
                     else
@@ -85,7 +76,7 @@ namespace Klinika.Model
                     }
                     if (zgodnoscZFiltrem)
                     {
-                        Lekarz l = Dane.ZnajdzLekarzaPoID(w.IdLekarza);
+                        Lekarz l = dane.ZnajdzLekarzaPoID(w.IdLekarza);
                         if (w.Pesel != "")
                             statusWizyty = "Zarezerwowana";
                         listaWizyt.Add(w.ToString() + "  " + l.ToString() + "  " + l.Sala + "  " + statusWizyty);
@@ -96,10 +87,22 @@ namespace Klinika.Model
             return listaWizyt;
         }
 
-        public void ZapiszPacjentaNaWizyte(int indeksWizyty,int indeksPacjenta)
+        public void ZapiszPacjentaNaWizyte(int indeksPacjenta)
         {
-            RepozytoriumWizyt.EdytujWizyteWBazie(Dane.Pacjenci[indeksPacjenta].Pesel, AktualneWizyty[indeksWizyty].IdWizyty);
-            Dane.AktualizujWizyty();
+            RepozytoriumWizyt.EdytujWizyteWBazie(dane.Pacjenci[indeksPacjenta].Pesel, AktualneWizyty[IndeksWizyty].IdWizyty);
+            dane.AktualizujWizyty();
+        }
+
+        public void UsunPacjnetaZWizyty()
+        {
+            RepozytoriumWizyt.EdytujWizyteWBazie("NULL", AktualneWizyty[IndeksWizyty].IdWizyty);
+            dane.AktualizujWizyty();
+        }
+        public bool CzyWizytaJestZajeta()
+        {
+            if (AktualneWizyty[IndeksWizyty].Pesel == "")
+                return false;
+            return true;
         }
     }
 }

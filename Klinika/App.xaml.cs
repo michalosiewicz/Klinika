@@ -13,5 +13,7 @@ namespace Klinika
     /// </summary>
     public partial class App : Application
     {
+        public static View.DodawaniePacjenta OknoDodaniaPacjenta { get; set; }
+
     }
 }

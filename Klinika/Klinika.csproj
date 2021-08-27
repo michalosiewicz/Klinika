@@ -100,6 +100,7 @@
     <Compile Include="ViewModel\DodawaniePacjentowViewModel.cs" />
     <Compile Include="ViewModel\DzienViewModel.cs" />
     <Compile Include="ViewModel\FiltryViewModel.cs" />
+    <Compile Include="ViewModel\ListaPacjentowViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MiesiacViewModel.cs" />
     <Compile Include="View\DodawaniePacjenta.xaml.cs">
