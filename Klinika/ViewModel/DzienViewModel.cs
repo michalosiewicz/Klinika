@@ -18,9 +18,9 @@ namespace Klinika.ViewModel
         private DostepneWizyty dostepneWizyty;
         public int NumerDnia { get; set; }
 
-        private List<string> wizyty;
+        private List<OpisanaWizyta> wizyty;
 
-        public List<string> Wizyty
+        public List<OpisanaWizyta> Wizyty
         {
             get { return wizyty; }
             set { wizyty = value; onPropertyChanged(nameof(Wizyty)); }
@@ -61,14 +61,13 @@ namespace Klinika.ViewModel
                                     "Usuń pacjenta",MessageBoxButton.YesNo);
                                 if(result==MessageBoxResult.Yes)
                                     dostepneWizyty.UsunPacjnetaZWizyty();
-                                Wizyty = terminarz.WizytyDanegoDnia(NumerDnia);
                             }
                             else
                             {
                                 App.OknoDodaniaPacjenta = new View.DodawaniePacjenta();
                                 App.OknoDodaniaPacjenta.ShowDialog();
-                                Wizyty = terminarz.WizytyDanegoDnia(NumerDnia);
                             }
+                            Wizyty = terminarz.WizytyDanegoDnia(NumerDnia); //nie działa jak powinno przy zmianie miesiecy
                             Index = -1;
                         }
 
@@ -78,7 +77,7 @@ namespace Klinika.ViewModel
                     ));
             }
         }
-        public void Aktualizuj(string data,List<string> wizyty)
+        public void Aktualizuj(string data,List<OpisanaWizyta> wizyty)
         {
             Data = data;
             Wizyty = wizyty;
@@ -87,12 +86,7 @@ namespace Klinika.ViewModel
         public void Reset()
         {
             Data = null;
-            Wizyty = new List<string>();
-        }
-
-        public void Aktualizuj()
-        {
-            Wizyty = terminarz.WizytyDanegoDnia(NumerDnia);
+            Wizyty = new List<OpisanaWizyta>();
         }
 
         public DzienViewModel(Terminarz t,DostepneWizyty dW)

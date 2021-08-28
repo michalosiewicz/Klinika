@@ -8,15 +8,15 @@
         xmlns:view="clr-namespace:Klinika.View"
         xmlns:vm="clr-namespace:Klinika.ViewModel"
         mc:Ignorable="d"
-        Title="Kalendarz" Height="500" Width="800" ResizeMode="CanMinimize">
+        Title="Kalendarz" Height="500" Width="900" ResizeMode="CanMinimize">
     <Window.DataContext>
         <vm:MainViewModel x:Name="MainVM"/>
     </Window.DataContext>
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">

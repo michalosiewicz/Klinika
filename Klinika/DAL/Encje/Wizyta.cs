@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Klinika.DAL.Encje
 {
-    class Wizyta
+    class Wizyta:IComparable<Wizyta>
     {
         public uint IdWizyty { get; set; }
         public uint IdLekarza { get; set; }
@@ -25,6 +25,16 @@ namespace Klinika.DAL.Encje
         public override string ToString()
         {
             return Data.ToShortTimeString();
+        }
+
+        public int CompareTo(Wizyta other)
+        {
+            if (this.Pesel != "" && other.Pesel == "")
+                return 1;
+            else if (this.Pesel == "" && other.Pesel != "")
+                return -1;
+            else
+                return this.Data.CompareTo(other.Data);
         }
     }
 }

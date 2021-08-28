@@ -26,11 +26,11 @@ namespace Klinika.View
         }
 
         public static readonly DependencyProperty PacjenciDP =
-            DependencyProperty.Register(nameof(Pacjenci), typeof(List<string>), typeof(ListaPacjentow));
+            DependencyProperty.Register(nameof(Pacjenci), typeof(List<DAL.Encje.Pacjent>), typeof(ListaPacjentow));
 
-        public List<string> Pacjenci
+        public List<DAL.Encje.Pacjent> Pacjenci
         {
-            get { return (List<string>)GetValue(PacjenciDP); }
+            get { return (List<DAL.Encje.Pacjent>)GetValue(PacjenciDP); }
             set { SetValue(PacjenciDP, value); }
         }
 

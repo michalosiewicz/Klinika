@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Klinika.View"
         xmlns:vm="clr-namespace:Klinika.ViewModel"
         mc:Ignorable="d"
-        Title="Zapis Pacjenta" Height="450" Width="400" ResizeMode="NoResize">
+        Title="Zapis Pacjenta" Height="450" Width="300" ResizeMode="NoResize">
 
     <Window.DataContext>
         <vm:DodawaniePacjentowViewModel x:Name="DPVM"/>

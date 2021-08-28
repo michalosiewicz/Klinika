@@ -47,9 +47,9 @@ namespace Klinika.Model
             return false;
         }
 
-        public List<string> ListaWizyt(int numerDnia, int rok, int miesiac)
+        public List<OpisanaWizyta> ListaWizyt(int numerDnia, int rok, int miesiac)
         {
-            List<string> listaWizyt = new List<string>();
+            List<OpisanaWizyta> listaWizyt = new List<OpisanaWizyta>();
             AktualneWizyty = new List<Wizyta>();
             string statusWizyty;
             bool zgodnoscZFiltrem;
@@ -78,18 +78,21 @@ namespace Klinika.Model
                     {
                         Lekarz l = dane.ZnajdzLekarzaPoID(w.IdLekarza);
                         if (w.Pesel != "")
-                            statusWizyty = "Zarezerwowana";
-                        listaWizyt.Add(w.ToString() + "  " + l.ToString() + "  " + l.Sala + "  " + statusWizyty);
+                            statusWizyty = "Zajęta";
+                        OpisanaWizyta opisanaWizyta = new OpisanaWizyta(w.ToString(), l.ToString(), l.Sala, statusWizyty);
+                        listaWizyt.Add(opisanaWizyta);
                         AktualneWizyty.Add(w);
                     }
                 }
             }
+            listaWizyt.Sort();
+            AktualneWizyty.Sort();
             return listaWizyt;
         }
 
         public void ZapiszPacjentaNaWizyte(int indeksPacjenta)
         {
-            RepozytoriumWizyt.EdytujWizyteWBazie(dane.Pacjenci[indeksPacjenta].Pesel, AktualneWizyty[IndeksWizyty].IdWizyty);
+            RepozytoriumWizyt.EdytujWizyteWBazie(dane.AktualniPacjenci[indeksPacjenta].Pesel, AktualneWizyty[IndeksWizyty].IdWizyty);
             dane.AktualizujWizyty();
         }
 

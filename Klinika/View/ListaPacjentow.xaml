@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
     </UserControl.Resources>
@@ -28,9 +28,12 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Naziwsko"/>
-            <TextBlock Grid.Column="1" Text="Imię"/>
-            <TextBlock Grid.Column="2" Text="Pesel"/>
+            <TextBlock Grid.Column="0" Text="Naziwsko"
+                       FontWeight="Bold" Margin="10,5,5,5"/>
+            <TextBlock Grid.Column="1" Text="Imię"
+                       FontWeight="Bold"/>
+            <TextBlock Grid.Column="2" Text="Pesel"
+                       FontWeight="Bold" Margin="0,5,5,5"/>
 
         </Grid>
 
@@ -40,7 +43,24 @@
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
                  SelectedIndex="{Binding Index,
                      RelativeSource={RelativeSource 
-                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"/>
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Nazwisko}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Imie}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Pesel}"/>
+                    </Grid>
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </UserControl>

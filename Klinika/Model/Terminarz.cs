@@ -80,7 +80,7 @@ namespace Klinika.Model
             return numerDnia.ToString() +" "+ NazwyMiesiecy.NazwaMiesiaca(DataKalendarza.Month) +" "+ DataKalendarza.Year;
         }
 
-        public List<string> WizytyDanegoDnia(int numerDnia)
+        public List<OpisanaWizyta> WizytyDanegoDnia(int numerDnia)
         {
             numerDnia++;
             numerDnia -= pierwszyDzienMiesiaca;

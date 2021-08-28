@@ -9,8 +9,7 @@
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </UserControl.Resources>
 
@@ -25,20 +24,23 @@
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}" 
-                   FontWeight="Bold" FontSize="20"/>
+                   FontWeight="Bold" FontSize="20" HorizontalAlignment="Center"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Godzina" />
-            <TextBlock Grid.Column="1" Text="Lekarz"/>
-            <TextBlock Grid.Column="2" Text="Sala"/>
-            <TextBlock Grid.Column="3" Text="Status"/>
+            <TextBlock Text="Godzina" FontWeight="Bold" Margin="5,0,0,0"/>
+            <TextBlock Grid.Column="1" Text="Lekarz" 
+                       FontWeight="Bold" Margin="5,0,0,0"/>
+            <TextBlock Grid.Column="2" Text="Sala"
+                       FontWeight="Bold"/>
+            <TextBlock Grid.Column="3" Text="Status"
+                       FontWeight="Bold"/>
 
         </Grid>
 
@@ -48,7 +50,27 @@
                  SelectedIndex="{Binding Index,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
-                 SelectionChanged="ListBox_SelectionChanged"/>
+                 SelectionChanged="ListBox_SelectionChanged"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Godzina}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Lekarz}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Sala}"/>
+                        <TextBlock Grid.Column="3" Text="{Binding Status}"/>
+                    </Grid>
+                </DataTemplate>
+                
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
 
     </Grid>
 </UserControl>

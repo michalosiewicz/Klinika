@@ -26,11 +26,11 @@ namespace Klinika.View
         }
 
         public static readonly DependencyProperty WizytyDP =
-            DependencyProperty.Register(nameof(Wizyty), typeof(List<string>), typeof(Dzien));
+            DependencyProperty.Register(nameof(Wizyty), typeof(List<Model.OpisanaWizyta>), typeof(Dzien));
 
-        public List<string> Wizyty
+        public List<Model.OpisanaWizyta> Wizyty
         {
-            get { return (List<string>)GetValue(WizytyDP); }
+            get { return (List<Model.OpisanaWizyta>)GetValue(WizytyDP); }
             set { SetValue(WizytyDP, value); }
         }
 

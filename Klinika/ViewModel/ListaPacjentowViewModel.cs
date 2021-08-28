@@ -10,14 +10,14 @@ namespace Klinika.ViewModel
 {
     class ListaPacjentowViewModel:ViewModelBase
     {
-        public ListaPacjentowViewModel(List<string> lista)
+        public ListaPacjentowViewModel(List<DAL.Encje.Pacjent> lista)
         {
             Pacjenci = lista;
         }
 
-        private List<string> pacjenci;
+        private List<DAL.Encje.Pacjent> pacjenci;
 
-        public List<string> Pacjenci
+        public List<DAL.Encje.Pacjent> Pacjenci
         {
             get { return pacjenci; }
             set { pacjenci = value; onPropertyChanged(nameof(Pacjenci)); }

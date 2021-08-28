@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Klinika.DAL.Encje
 {
-    class Pacjent
+    public class Pacjent:IComparable<Pacjent>
     {
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
@@ -23,6 +23,14 @@ namespace Klinika.DAL.Encje
         public override string ToString()
         {
             return $"{Nazwisko} {Imie} {Pesel}";
+        }
+
+        public int CompareTo(Pacjent other)
+        {
+            if (this.Nazwisko.CompareTo(other.Nazwisko) == 0)
+                return this.Imie.CompareTo(other.Imie);
+            else
+                return this.Nazwisko.CompareTo(other.Nazwisko);
         }
     }
 }
