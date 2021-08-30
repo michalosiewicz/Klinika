@@ -21,7 +21,7 @@ namespace Klinika.Model
 
         public string NazwaMiesiaca { get; set; }
 
-        private int pierwszyDzienMiesiaca;
+        public int PierwszyDzienMiesiaca { get; set; }
 
 
         public Terminarz(DostepneWizyty w)
@@ -38,19 +38,19 @@ namespace Klinika.Model
             DniMiesaca = new uint[37];
             Widoczne = new string[15];
 
-            pierwszyDzienMiesiaca = (int)DataKalendarza.DayOfWeek;
-            pierwszyDzienMiesiaca--;
-            if (pierwszyDzienMiesiaca == -1)
-                pierwszyDzienMiesiaca = 6;
+            PierwszyDzienMiesiaca = (int)DataKalendarza.DayOfWeek;
+            PierwszyDzienMiesiaca--;
+            if (PierwszyDzienMiesiaca == -1)
+                PierwszyDzienMiesiaca = 6;
             NazwaMiesiaca = NazwyMiesiecy.NazwaMiesiaca(miesiac)+" "+rok;
             uint numer = 1;
             
-            for (int i = 0; i < pierwszyDzienMiesiaca; i++)
+            for (int i = 0; i < PierwszyDzienMiesiaca; i++)
             {
                 Widoczne[i] = "Collapsed";
             }
             int indeks = 14;
-            for (int i = pierwszyDzienMiesiaca; i < DniMiesaca.Length; i++)
+            for (int i = PierwszyDzienMiesiaca; i < DniMiesaca.Length; i++)
             {
                 if (numer > Kalendarz.GetDaysInMonth(DataKalendarza.Year, DataKalendarza.Month))
                 {
@@ -67,7 +67,7 @@ namespace Klinika.Model
         public bool DniDostepne(int numerDnia)
         {
             numerDnia++;
-            numerDnia -= pierwszyDzienMiesiaca;
+            numerDnia -= PierwszyDzienMiesiaca;
             if (wizyty.DostepneDni(numerDnia, DataKalendarza.Year, DataKalendarza.Month))
                 return true;
             return false;
@@ -76,15 +76,15 @@ namespace Klinika.Model
         public string WybranoDzien(int numerDnia)
         {
             numerDnia++;
-            numerDnia -= pierwszyDzienMiesiaca;
+            numerDnia -= PierwszyDzienMiesiaca;
             return numerDnia.ToString() +" "+ NazwyMiesiecy.NazwaMiesiaca(DataKalendarza.Month) +" "+ DataKalendarza.Year;
         }
 
-        public List<OpisanaWizyta> WizytyDanegoDnia(int numerDnia)
+        public List<OpisanaWizyta> WizytyDanegoDnia(int numerDnia,int miesiac,int rok,int pierwszydzien)
         {
             numerDnia++;
-            numerDnia -= pierwszyDzienMiesiaca;
-            return wizyty.ListaWizyt(numerDnia, DataKalendarza.Year, DataKalendarza.Month);
+            numerDnia -= pierwszydzien;
+            return wizyty.ListaWizyt(numerDnia, rok, miesiac);
         }
 
         public void NastepnyMiesiac(int przesuniecie)

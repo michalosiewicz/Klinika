@@ -46,10 +46,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Anuluj" Margin="5" FontWeight="Bold"
+            <Button  Grid.Column="1" Content="Anuluj" Margin="5" FontWeight="Bold"
                     Command="{Binding Anuluj}"/>
 
-            <Button Grid.Column="1" Content="Zapisz" Margin="5" 
+            <Button Grid.Column="0" Content="Zapisz" Margin="5" 
                     FontWeight="Bold" 
                     Command="{Binding Zapisz}"/>
 

@@ -51,10 +51,17 @@ namespace Klinika.ViewModel
             get
             {
                 return wybranoDzien ?? (wybranoDzien = new RelayCommand(
-                    p => { dzien.Aktualizuj(
+                    p => {
+                        int miesiac = terminarz.DataKalendarza.Month;
+                        int rok = terminarz.DataKalendarza.Year;
+                        dzien.Aktualizuj(
                         terminarz.WybranoDzien(int.Parse(p.ToString())),
-                        terminarz.WizytyDanegoDnia(int.Parse(p.ToString())));
+                        terminarz.WizytyDanegoDnia(int.Parse(p.ToString()), miesiac, rok,terminarz.PierwszyDzienMiesiaca));
                         dzien.NumerDnia = int.Parse(p.ToString());
+                        dzien.Miesiac = terminarz.DataKalendarza.Month;
+                        dzien.Rok = terminarz.DataKalendarza.Year;
+                        dzien.PierwszyDzienMiesiaca = terminarz.PierwszyDzienMiesiaca;
+                        dzien.Widoczne = "Visible";
                     },
                     
                     p =>  terminarz.DniDostepne(int.Parse(p.ToString()))

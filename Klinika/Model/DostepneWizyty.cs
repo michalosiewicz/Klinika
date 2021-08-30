@@ -107,5 +107,10 @@ namespace Klinika.Model
                 return false;
             return true;
         }
+
+        public Pacjent PrzypisanyPacjent(int indekswizyty)
+        {
+            return dane.ZnajdzPacjnetaPoPesel(AktualneWizyty[indekswizyty].Pesel);
+        }
     }
 }

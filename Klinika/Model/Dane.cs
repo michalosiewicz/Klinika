@@ -90,6 +90,17 @@ namespace Klinika.Model
             return lista;
         }
 
+        public Pacjent ZnajdzPacjnetaPoPesel(string pesel)
+        {
+            Pacjent pacjent = new Pacjent(); // SPRAWDZIC w ZNAJOMI
+            foreach(var p in Pacjenci)
+            {
+                if (p.Pesel == pesel)
+                    pacjent = p;
+            }
+            return pacjent;
+        }
+
         public bool CzyLekarzPosiadaSpecjalizacje(Specjalizacja s,Lekarz l)
         {
             foreach(var p in Posiadaja)

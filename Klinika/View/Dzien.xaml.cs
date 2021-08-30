@@ -52,6 +52,58 @@ namespace Klinika.View
             set { SetValue(IndexDP, value); }
         }
 
+        public static readonly DependencyProperty WidoczneDP =
+            DependencyProperty.Register(nameof(Widoczne), typeof(string), typeof(Dzien));
+
+        public string Widoczne
+        {
+            get { return (string)GetValue(WidoczneDP); }
+            set { SetValue(WidoczneDP, value); }
+        }
+
+        public static readonly DependencyProperty WidoczneInformacjeOPacjencieDP =
+            DependencyProperty.Register(nameof(WidoczneInformacjeOPacjencie), typeof(string), typeof(Dzien));
+
+        public string WidoczneInformacjeOPacjencie
+        {
+            get { return (string)GetValue(WidoczneInformacjeOPacjencieDP); }
+            set { SetValue(WidoczneInformacjeOPacjencieDP, value); }
+        }
+
+        public static readonly DependencyProperty NazwiskoImieDP =
+            DependencyProperty.Register(nameof(NazwiskoImie), typeof(string), typeof(Dzien));
+
+        public string NazwiskoImie
+        {
+            get { return (string)GetValue(NazwiskoImieDP); }
+            set { SetValue(NazwiskoImieDP, value); }
+        }
+
+        public static readonly DependencyProperty PeselDP =
+            DependencyProperty.Register(nameof(Pesel), typeof(string), typeof(Dzien));
+
+        public string Pesel
+        {
+            get { return (string)GetValue(PeselDP); }
+            set { SetValue(PeselDP, value); }
+        }
+
+        public static readonly DependencyProperty ZapiszDP =
+            DependencyProperty.Register(nameof(Zapisz), typeof(ICommand), typeof(Dzien));
+        public ICommand Zapisz
+        {
+            get { return (ICommand)GetValue(ZapiszDP); }
+            set { SetValue(ZapiszDP, value); }
+        }
+
+        public static readonly DependencyProperty UsunDP =
+            DependencyProperty.Register(nameof(Usun), typeof(ICommand), typeof(Dzien));
+        public ICommand Usun
+        {
+            get { return (ICommand)GetValue(UsunDP); }
+            set { SetValue(UsunDP, value); }
+        }
+
         public static readonly RoutedEvent ZmianaIndeksuEvent =
            EventManager.RegisterRoutedEvent("ZmianaIndeksu",
                    RoutingStrategy.Bubble, typeof(RoutedEventHandler),

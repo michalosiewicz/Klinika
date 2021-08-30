@@ -69,7 +69,13 @@
             <view:Dzien Grid.Column="1" Margin="5" 
                         Wizyty="{Binding Dzien.Wizyty}"
                         Data="{Binding Dzien.Data}"
-                        Index="{Binding Dzien.Index,Mode=TwoWay}">
+                        Index="{Binding Dzien.Index,Mode=TwoWay}"
+                        Widoczne="{Binding Dzien.Widoczne}"
+                        Zapisz="{Binding Dzien.ZapiszPacjenta}"
+                        Usun="{Binding Dzien.UsunPacjenta}"
+                        WidoczneInformacjeOPacjencie="{Binding Dzien.WidoczneInformacjeOPacjencie}"
+                        NazwiskoImie="{Binding Dzien.NazwiskoImie}"
+                        Pesel="{Binding Dzien.Pesel}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="ZmianaIndeksu">
                         <i:InvokeCommandAction Command="{Binding Dzien.ZmianaIndeksu}"/>

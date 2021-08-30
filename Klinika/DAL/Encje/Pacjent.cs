@@ -19,7 +19,10 @@ namespace Klinika.DAL.Encje
             Nazwisko = reader["nazwisko"].ToString();
             Pesel = reader["pesel"].ToString();
         }
+        public Pacjent()
+        {
 
+        }
         public override string ToString()
         {
             return $"{Nazwisko} {Imie} {Pesel}";
