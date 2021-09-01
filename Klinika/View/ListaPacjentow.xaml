@@ -53,12 +53,11 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Nazwisko}" />
+                        <TextBlock Grid.Column="0" Text="{Binding Nazwisko}"/>
                         <TextBlock Grid.Column="1" Text="{Binding Imie}"/>
                         <TextBlock Grid.Column="2" Text="{Binding Pesel}"/>
                     </Grid>
                 </DataTemplate>
-
             </ListBox.ItemTemplate>
         </ListBox>
 

@@ -50,7 +50,7 @@ namespace Klinika.Model
             return lista;
         }
 
-        public void WybranoFiltry(int indexSpecjalizacji,int indexLekarza)
+        public void WybranoFiltry(int indexSpecjalizacji,int indexLekarza,int indexStatus)
         {
             if (indexSpecjalizacji > 0)
                 wizyta.WybranaSpecjalizacja = AktualneSpecjalizacje[indexSpecjalizacji - 1];
@@ -60,6 +60,15 @@ namespace Klinika.Model
                 wizyta.WybranyLekarz = AktualniLekarze[indexLekarza - 1];
             else
                 wizyta.WybranyLekarz = null;
+            if (indexStatus > 0)
+            {
+                if (indexStatus == 1)
+                    wizyta.Dostepnosc = "Dostępna";
+                else
+                    wizyta.Dostepnosc = "Zajęta";
+            }
+            else
+                wizyta.Dostepnosc = null;
         }
     }
 }

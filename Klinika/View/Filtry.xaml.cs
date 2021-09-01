@@ -61,6 +61,15 @@ namespace Klinika.View
             set { SetValue(LekarzeIndexDP, value); }
         }
 
+        public static readonly DependencyProperty StatusIndexDP =
+            DependencyProperty.Register(nameof(StatusIndex), typeof(int), typeof(Filtry));
+
+        public int StatusIndex
+        {
+            get { return (int)GetValue(StatusIndexDP); }
+            set { SetValue(StatusIndexDP, value); }
+        }
+
         public static readonly DependencyProperty WybranoFiltryDP =
             DependencyProperty.Register(nameof(WybranoFiltry), typeof(ICommand), typeof(Filtry));
         public ICommand WybranoFiltry

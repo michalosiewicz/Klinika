@@ -24,6 +24,7 @@ namespace Klinika.View
         {
             InitializeComponent();
         }
+        
         public static readonly DependencyProperty DzienMiesiacaDP =
             DependencyProperty.Register(nameof(DzienMiesiaca), typeof(uint[]), typeof(Miesiac));
 

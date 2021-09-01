@@ -35,43 +35,43 @@
 
         <Grid Grid.Row="1">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
-        
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0"
+
+            <TextBlock Grid.Column="0" Grid.Row="0"
                    Text="Poniedziałek"/>
-        <TextBlock Grid.Column="1" Grid.Row="0"
+            <TextBlock Grid.Column="1" Grid.Row="0"
                    Text="Wtorek"/>
-        <TextBlock Grid.Column="2" Grid.Row="0"
+            <TextBlock Grid.Column="2" Grid.Row="0"
                    Text="Środa"/>
-        <TextBlock Grid.Column="3" Grid.Row="0"
+            <TextBlock Grid.Column="3" Grid.Row="0"
                    Text="Czwartek"/>
-        <TextBlock Grid.Column="4" Grid.Row="0"
+            <TextBlock Grid.Column="4" Grid.Row="0"
                    Text="Piątek"/>
-        <TextBlock Grid.Column="5" Grid.Row="0"
+            <TextBlock Grid.Column="5" Grid.Row="0"
                    Text="Sobota"/>
-        <TextBlock Grid.Column="6" Grid.Row="0"
+            <TextBlock Grid.Column="6" Grid.Row="0"
                    Text="Niedziela"/>
 
-        <Button Grid.Column="0" Grid.Row="1"
+            <Button Grid.Column="0" Grid.Row="1"
                 Content="{Binding DzienMiesiaca[0],
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
@@ -81,7 +81,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="0"/>
-        <Button Grid.Column="1" Grid.Row="1" 
+            <Button Grid.Column="1" Grid.Row="1" 
                 Content="{Binding DzienMiesiaca[1],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -90,7 +90,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="1"/>
-        <Button Grid.Column="2" Grid.Row="1"
+            <Button Grid.Column="2" Grid.Row="1"
                 Content="{Binding DzienMiesiaca[2],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -99,7 +99,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="2"/>
-        <Button Grid.Column="3" Grid.Row="1" 
+            <Button Grid.Column="3" Grid.Row="1" 
                 Content="{Binding DzienMiesiaca[3],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -108,7 +108,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="3"/>
-        <Button Grid.Column="4" Grid.Row="1"
+            <Button Grid.Column="4" Grid.Row="1"
                 Content="{Binding DzienMiesiaca[4],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -117,7 +117,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="4"/>
-        <Button Grid.Column="5" Grid.Row="1"
+            <Button Grid.Column="5" Grid.Row="1"
                 Content="{Binding DzienMiesiaca[5],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -126,124 +126,124 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="5"/>
-        <Button Grid.Column="6" Grid.Row="1" 
+            <Button Grid.Column="6" Grid.Row="1" 
                 Content="{Binding DzienMiesiaca[6],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="6"/>
 
-        <Button Grid.Column="0" Grid.Row="2"
+            <Button Grid.Column="0" Grid.Row="2"
                 Content="{Binding DzienMiesiaca[7],
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="7"/>
-        <Button Grid.Column="1" Grid.Row="2" 
+            <Button Grid.Column="1" Grid.Row="2" 
                 Content="{Binding DzienMiesiaca[8],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="8"/>
-        <Button Grid.Column="2" Grid.Row="2"
+            <Button Grid.Column="2" Grid.Row="2"
                 Content="{Binding DzienMiesiaca[9],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="9"/>
-        <Button Grid.Column="3" Grid.Row="2" 
+            <Button Grid.Column="3" Grid.Row="2" 
                 Content="{Binding DzienMiesiaca[10],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="10"/>
-        <Button Grid.Column="4" Grid.Row="2"
+            <Button Grid.Column="4" Grid.Row="2"
                 Content="{Binding DzienMiesiaca[11],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="11"/>
-        <Button Grid.Column="5" Grid.Row="2"
+            <Button Grid.Column="5" Grid.Row="2"
                 Content="{Binding DzienMiesiaca[12],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="12"/>
-        <Button Grid.Column="6" Grid.Row="2" 
+            <Button Grid.Column="6" Grid.Row="2" 
                 Content="{Binding DzienMiesiaca[13],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="13"/>
 
-        <Button Grid.Column="0" Grid.Row="3"
+            <Button Grid.Column="0" Grid.Row="3"
                 Content="{Binding DzienMiesiaca[14],
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="14"/>
-        <Button Grid.Column="1" Grid.Row="3" 
+            <Button Grid.Column="1" Grid.Row="3" 
                 Content="{Binding DzienMiesiaca[15],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="15"/>
-        <Button Grid.Column="2" Grid.Row="3"
+            <Button Grid.Column="2" Grid.Row="3"
                 Content="{Binding DzienMiesiaca[16],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="16"/>
-        <Button Grid.Column="3" Grid.Row="3" 
+            <Button Grid.Column="3" Grid.Row="3" 
                 Content="{Binding DzienMiesiaca[17],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="17"/>
-        <Button Grid.Column="4" Grid.Row="3"
+            <Button Grid.Column="4" Grid.Row="3"
                 Content="{Binding DzienMiesiaca[18],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="18"/>
-        <Button Grid.Column="5" Grid.Row="3"
+            <Button Grid.Column="5" Grid.Row="3"
                 Content="{Binding DzienMiesiaca[19],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="19"/>
-        <Button Grid.Column="6" Grid.Row="3" 
+            <Button Grid.Column="6" Grid.Row="3" 
                 Content="{Binding DzienMiesiaca[20],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="20"/>
 
-        <Button Grid.Column="0" Grid.Row="4"
+            <Button Grid.Column="0" Grid.Row="4"
                 Content="{Binding DzienMiesiaca[21],
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="21"/>
-        <Button Grid.Column="1" Grid.Row="4" 
+            <Button Grid.Column="1" Grid.Row="4" 
                 Content="{Binding DzienMiesiaca[22],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="22"/>
-        <Button Grid.Column="2" Grid.Row="4"
+            <Button Grid.Column="2" Grid.Row="4"
                 Content="{Binding DzienMiesiaca[23],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="23"/>
-        <Button Grid.Column="3" Grid.Row="4" 
+            <Button Grid.Column="3" Grid.Row="4" 
                 Content="{Binding DzienMiesiaca[24],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="24"/>
-        <Button Grid.Column="4" Grid.Row="4"
+            <Button Grid.Column="4" Grid.Row="4"
                 Content="{Binding DzienMiesiaca[25],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="25"/>
-        <Button Grid.Column="5" Grid.Row="4"
+            <Button Grid.Column="5" Grid.Row="4"
                 Content="{Binding DzienMiesiaca[26],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="26"/>
-        <Button Grid.Column="6" Grid.Row="4" 
+            <Button Grid.Column="6" Grid.Row="4" 
                 Content="{Binding DzienMiesiaca[27],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
                 CommandParameter="27"/>
 
-        <Button Grid.Column="0" Grid.Row="5"
+            <Button Grid.Column="0" Grid.Row="5"
                 Content="{Binding DzienMiesiaca[28],
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
@@ -253,7 +253,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="28"/>
-        <Button Grid.Column="1" Grid.Row="5" 
+            <Button Grid.Column="1" Grid.Row="5" 
                 Content="{Binding DzienMiesiaca[29],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -262,7 +262,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="29"/>
-        <Button Grid.Column="2" Grid.Row="5"
+            <Button Grid.Column="2" Grid.Row="5"
                 Content="{Binding DzienMiesiaca[30],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -271,7 +271,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="30"/>
-        <Button Grid.Column="3" Grid.Row="5" 
+            <Button Grid.Column="3" Grid.Row="5" 
                 Content="{Binding DzienMiesiaca[31],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -280,7 +280,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="31"/>
-        <Button Grid.Column="4" Grid.Row="5"
+            <Button Grid.Column="4" Grid.Row="5"
                 Content="{Binding DzienMiesiaca[32],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -289,7 +289,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="32"/>
-        <Button Grid.Column="5" Grid.Row="5"
+            <Button Grid.Column="5" Grid.Row="5"
                 Content="{Binding DzienMiesiaca[33],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -298,7 +298,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="33"/>
-        <Button Grid.Column="6" Grid.Row="5" 
+            <Button Grid.Column="6" Grid.Row="5" 
                 Content="{Binding DzienMiesiaca[34],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"
@@ -308,7 +308,7 @@
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="34"/>
 
-        <Button Grid.Column="0" Grid.Row="6"
+            <Button Grid.Column="0" Grid.Row="6"
                 Content="{Binding DzienMiesiaca[35],
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
@@ -318,7 +318,7 @@
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"
                 CommandParameter="35"/>
-        <Button Grid.Column="1" Grid.Row="6" 
+            <Button Grid.Column="1" Grid.Row="6" 
                 Content="{Binding DzienMiesiaca[36],
             RelativeSource={RelativeSource Mode=FindAncestor,
             AncestorType={x:Type UserControl}}}"

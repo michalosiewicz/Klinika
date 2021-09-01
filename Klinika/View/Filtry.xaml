@@ -10,6 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -57,7 +58,29 @@
 
         </Grid>
 
-        <Button Grid.Column="2" Content="Zastosuj"
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Status Wizyty :"
+                           Margin="5" HorizontalAlignment="Left" />
+
+            <ComboBox Grid.Row="1" Margin="5" 
+                          HorizontalAlignment="Left"
+                SelectedIndex="{Binding StatusIndex,
+                     RelativeSource={RelativeSource 
+                     Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
+                      VerticalAlignment="Center" >
+                <ComboBoxItem>Dowolna</ComboBoxItem>
+                <ComboBoxItem>Dostępna</ComboBoxItem>
+                <ComboBoxItem>Zajęta</ComboBoxItem>
+            </ComboBox>
+
+        </Grid>
+
+        <Button Grid.Column="3" Content="Zastosuj"
                         Margin="5" Command="{Binding WybranoFiltry,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,

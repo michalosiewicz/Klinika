@@ -50,6 +50,14 @@ namespace Klinika.ViewModel
             set { indexLekarza = value; onPropertyChanged(nameof(IndexLekarza)); }
         }
 
+        private int indexStatus;
+
+        public int IndexStatus
+        {
+            get { return indexStatus; }
+            set { indexStatus = value; onPropertyChanged(nameof(IndexStatus)); }
+        }
+
         private ICommand wybranoFiltry;
         public ICommand WybranoFiltry
         {
@@ -59,7 +67,7 @@ namespace Klinika.ViewModel
                 return wybranoFiltry ?? (wybranoFiltry = new RelayCommand(
                     p =>
                     {
-                        filtry.WybranoFiltry(IndexSpecjalizacji,IndexLekarza);
+                        filtry.WybranoFiltry(IndexSpecjalizacji,IndexLekarza,IndexStatus);
                         terminarz.PierwszyMiesac();
                         miesiac.Aktualizacja();
                         dzien.Reset();
