@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Klinika.View.DodawaniePacjenta"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Klinika.View"
@@ -15,30 +16,20 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0" 
+        <TextBlock Grid.Row="0" 
                        Text="Wyszukaj pacjenta po nazwisku :" 
-                       VerticalAlignment="Center" 
-                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom" 
+                       HorizontalAlignment="Left"
                        Margin="5"/>
-            <TextBox Grid.Column="1" 
-                     VerticalAlignment="Center"
-                     Margin="5"/>
-
-        </Grid>
 
         <local:ListaPacjentow Grid.Row="1"
                               Pacjenci="{Binding ListaPacjentow.Pacjenci}"
-                              Index="{Binding ListaPacjentow.Indeks,Mode=TwoWay}"/>
+                              Index="{Binding ListaPacjentow.Indeks,Mode=TwoWay}"
+                              Nazwisko="{Binding ListaPacjentow.Nazwisko,Mode=TwoWay}"/>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

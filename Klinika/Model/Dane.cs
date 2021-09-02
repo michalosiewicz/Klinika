@@ -18,7 +18,6 @@ namespace Klinika.Model
         public ObservableCollection<Wizyta> Wizyty { get; set; } = new ObservableCollection<Wizyta>();
         public ObservableCollection<Posiada> Posiadaja { get; set; } = new ObservableCollection<Posiada>();
         public ObservableCollection<Pacjent> Pacjenci { get; set; } = new ObservableCollection<Pacjent>();
-        public List<Pacjent> AktualniPacjenci { get; set; } = new List<Pacjent>();
 
         public Dane()
         {
@@ -43,12 +42,11 @@ namespace Klinika.Model
                 var pacjenci = RepozytoriumPacjenci.PobierzWszystkichPacjentow();
                 foreach (var p in pacjenci)
                     Pacjenci.Add(p);
-                AktualniPacjenci = Pacjenci.ToList();
-                AktualniPacjenci.Sort();
             }
             catch
             {
                 MessageBox.Show("Brak dostępu do bazy danych.");
+                App.Current.MainWindow.Close();
             }
         }
 

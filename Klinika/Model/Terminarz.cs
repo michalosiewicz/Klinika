@@ -68,6 +68,8 @@ namespace Klinika.Model
         {
             numerDnia++;
             numerDnia -= PierwszyDzienMiesiaca;
+            if(numerDnia<DataAktualna.Day)
+                return false;
             if (wizyty.DostepneDni(numerDnia, DataKalendarza.Year, DataKalendarza.Month))
                 return true;
             return false;

@@ -17,11 +17,14 @@ namespace Klinika.Model
         public Lekarz WybranyLekarz { get; set; }
         public string Dostepnosc { get; set; }
         public List<Wizyta> AktualneWizyty { get; set; }
+        public List<Pacjent> AktualniPacjenci { get; set; }
         public int IndeksWizyty { get; set; }
 
         public DostepneWizyty(Dane d)
         {
             dane = d;
+            AktualniPacjenci = dane.Pacjenci.ToList();
+            AktualniPacjenci.Sort();
         }
 
         public bool DostepneDni(int numerDnia, int rok, int miesiac)
@@ -159,9 +162,34 @@ namespace Klinika.Model
             return listaWizyt;
         }
 
+        public List<Pacjent> ListaPacjentow(string nazwisko)
+        {
+            AktualniPacjenci = new List<Pacjent>();
+            if (nazwisko == "")
+            {
+                AktualniPacjenci = dane.Pacjenci.ToList();
+            }
+            else
+            {
+                nazwisko = nazwisko.ToLower();
+                foreach (var p in dane.Pacjenci)
+                {
+                    string nazwisko2 = p.Nazwisko.ToLower();
+                    if (nazwisko.Length <= nazwisko2.Length)
+                    {
+                        nazwisko2 = nazwisko2.Substring(0, nazwisko.Length);
+                        if (nazwisko == nazwisko2)
+                            AktualniPacjenci.Add(p);
+                    }
+                }
+            }
+            AktualniPacjenci.Sort();
+            return AktualniPacjenci;
+        }
+
         public void ZapiszPacjentaNaWizyte(int indeksPacjenta)
         {
-            RepozytoriumWizyt.EdytujWizyteWBazie(dane.AktualniPacjenci[indeksPacjenta].Pesel, AktualneWizyty[IndeksWizyty].IdWizyty);
+            RepozytoriumWizyt.EdytujWizyteWBazie(AktualniPacjenci[indeksPacjenta].Pesel, AktualneWizyty[IndeksWizyty].IdWizyty);
             dane.AktualizujWizyty();
         }
 

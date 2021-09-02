@@ -33,16 +33,13 @@
                          LekarzeIndex="{Binding Filtry.IndexLekarza,Mode=TwoWay}"
                          StatusIndex="{Binding Filtry.IndexStatus,Mode=TwoWay}"
                          WybranoFiltry="{Binding Filtry.WybranoFiltry}">
-                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="ZmianaSpecjalizacji">
-                                <i:InvokeCommandAction Command="{Binding Filtry.ZmianaSpecjalizacji}"/>
-                            </i:EventTrigger>
-                            
-                             <i:EventTrigger EventName="ZmianaLekarza">
-                                <i:InvokeCommandAction Command="{Binding Filtry.ZmianaLekarza}"/>
-                            </i:EventTrigger>
-
-
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="ZmianaSpecjalizacji">
+                        <i:InvokeCommandAction Command="{Binding Filtry.ZmianaSpecjalizacji}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="ZmianaLekarza">
+                        <i:InvokeCommandAction Command="{Binding Filtry.ZmianaLekarza}"/>
+                    </i:EventTrigger>
                 </i:Interaction.Triggers>
             </view:Filtry>
 
@@ -65,9 +62,9 @@
             
         </Grid>
 
-        
 
-            <view:Dzien Grid.Column="1" Margin="5" 
+
+        <view:Dzien Grid.Column="1" Margin="5" 
                         Wizyty="{Binding Dzien.Wizyty}"
                         Data="{Binding Dzien.Data}"
                         Index="{Binding Dzien.Index,Mode=TwoWay}"
@@ -76,13 +73,7 @@
                         Usun="{Binding Dzien.UsunPacjenta}"
                         WidoczneInformacjeOPacjencie="{Binding Dzien.WidoczneInformacjeOPacjencie}"
                         NazwiskoImie="{Binding Dzien.NazwiskoImie}"
-                        Pesel="{Binding Dzien.Pesel}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="ZmianaIndeksu">
-                        <i:InvokeCommandAction Command="{Binding Dzien.ZmianaIndeksu}"/>
-                    </i:EventTrigger>
-            </i:Interaction.Triggers>
-            </view:Dzien>
+                        Pesel="{Binding Dzien.Pesel}"/>
 
     </Grid>
 </Window>

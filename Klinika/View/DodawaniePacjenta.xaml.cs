@@ -23,5 +23,6 @@ namespace Klinika.View
         {
             InitializeComponent();
         }
+
     }
 }

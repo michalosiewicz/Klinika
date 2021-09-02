@@ -43,5 +43,14 @@ namespace Klinika.View
             set { SetValue(IndexDP, value); }
         }
 
+        public static readonly DependencyProperty NazwiskoDP =
+           DependencyProperty.Register(nameof(Nazwisko), typeof(string), typeof(ListaPacjentow));
+
+        public string Nazwisko
+        {
+            get { return (string)GetValue(NazwiskoDP); }
+            set { SetValue(NazwiskoDP, value); }
+        }
+
     }
 }

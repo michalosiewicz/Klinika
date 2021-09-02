@@ -104,28 +104,5 @@ namespace Klinika.View
             set { SetValue(UsunDP, value); }
         }
 
-        public static readonly RoutedEvent ZmianaIndeksuEvent =
-           EventManager.RegisterRoutedEvent("ZmianaIndeksu",
-                   RoutingStrategy.Bubble, typeof(RoutedEventHandler),
-                   typeof(Dzien));
-
-        public event RoutedEventHandler ZmianaIndeksu
-        {
-            add { AddHandler(ZmianaIndeksuEvent, value); }
-            remove { RemoveHandler(ZmianaIndeksuEvent, value); }
-        }
-
-        void RaiseZmianaIndeksu()
-        {
-            //argument zdarzenia
-            RoutedEventArgs newEventArgs =
-                    new RoutedEventArgs(Dzien.ZmianaIndeksuEvent);
-            //wywołanie zdarzenia
-            RaiseEvent(newEventArgs);
-        }
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            RaiseZmianaIndeksu();
-        }
     }
 }

@@ -64,7 +64,6 @@
                  SelectedIndex="{Binding Index,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,AncestorType={x:Type UserControl}}}"
-                 SelectionChanged="ListBox_SelectionChanged"
                  HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>

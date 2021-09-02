@@ -20,7 +20,7 @@ namespace Klinika.ViewModel
         {
             MainModel = Model.Instance;
 
-            ListaPacjentow = new ListaPacjentowViewModel(MainModel.DaneZBazy.AktualniPacjenci);
+            ListaPacjentow = new ListaPacjentowViewModel(MainModel.Wizyty);
         }
 
         private ICommand anuluj;

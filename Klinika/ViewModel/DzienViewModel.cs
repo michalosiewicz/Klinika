@@ -93,23 +93,6 @@ namespace Klinika.ViewModel
             set { pesel = value; onPropertyChanged(nameof(Pesel)); }
         }
 
-        private ICommand zmianaIndeksu;
-        public ICommand ZmianaIndeksu
-        {
-
-            get
-            {
-                return zmianaIndeksu ?? (zmianaIndeksu = new RelayCommand(
-                    p =>
-                    {
-
-                    },
-
-                    p => true
-                    ));
-            }
-        }
-
         private ICommand zapiszPacjenta;
         public ICommand ZapiszPacjenta
         {
