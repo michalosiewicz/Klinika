@@ -102,8 +102,13 @@ namespace Klinika.ViewModel
                 return zapiszPacjenta ?? (zapiszPacjenta = new RelayCommand(
                     p =>
                     {
-                        App.OknoDodaniaPacjenta = new View.DodawaniePacjenta();
-                        App.OknoDodaniaPacjenta.ShowDialog();
+                        if (dostepneWizyty.CzyWizytaJestAktualna())
+                        {
+                            App.OknoDodaniaPacjenta = new View.DodawaniePacjenta();
+                            App.OknoDodaniaPacjenta.ShowDialog();
+                        }
+                        else
+                            MessageBox.Show("Wybrana wizyta nie jest dostępna.");
                         Wizyty = terminarz.WizytyDanegoDnia(NumerDnia, Miesiac, Rok, PierwszyDzienMiesiaca);
                         Index = -1;
                     },
@@ -122,10 +127,15 @@ namespace Klinika.ViewModel
                 return usunPacjenta ?? (usunPacjenta = new RelayCommand(
                     p =>
                     {
-                        var result = MessageBox.Show($"Czy chcesz usunąć pacjenta z wybranej wizyty?",
-                            "Usuń pacjenta", MessageBoxButton.YesNo);
-                        if (result == MessageBoxResult.Yes)
-                            dostepneWizyty.UsunPacjnetaZWizyty();
+                        if (dostepneWizyty.CzyWizytaJestAktualna())
+                        {
+                            var result = MessageBox.Show($"Czy chcesz usunąć pacjenta z wybranej wizyty?",
+                                "Usuń pacjenta", MessageBoxButton.YesNo);
+                            if (result == MessageBoxResult.Yes)
+                                dostepneWizyty.UsunPacjnetaZWizyty();
+                        }
+                        else
+                            MessageBox.Show("Wybrana wizyta nie jest dostępna.");
                         Wizyty = terminarz.WizytyDanegoDnia(NumerDnia, Miesiac, Rok, PierwszyDzienMiesiaca);
                         Index = -1;
                     },

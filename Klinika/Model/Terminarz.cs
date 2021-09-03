@@ -66,11 +66,10 @@ namespace Klinika.Model
         }
         public bool DniDostepne(int numerDnia)
         {
+            DataAktualna = DateTime.Now;
             numerDnia++;
             numerDnia -= PierwszyDzienMiesiaca;
-            if(numerDnia<DataAktualna.Day)
-                return false;
-            if (wizyty.DostepneDni(numerDnia, DataKalendarza.Year, DataKalendarza.Month))
+            if (wizyty.DostepneDni(numerDnia, DataKalendarza.Year, DataKalendarza.Month,DataAktualna))
                 return true;
             return false;
         }
@@ -86,7 +85,8 @@ namespace Klinika.Model
         {
             numerDnia++;
             numerDnia -= pierwszydzien;
-            return wizyty.ListaWizyt(numerDnia, rok, miesiac);
+            DataAktualna = DateTime.Now;
+            return wizyty.ListaWizyt(numerDnia, rok, miesiac,DataAktualna);
         }
 
         public void NastepnyMiesiac(int przesuniecie)

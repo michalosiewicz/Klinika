@@ -47,8 +47,16 @@ namespace Klinika.ViewModel
                 return zapisz ?? (zapisz = new RelayCommand(
                     p =>
                     {
-                        MainModel.Wizyty.ZapiszPacjentaNaWizyte(ListaPacjentow.Indeks);
-                        App.OknoDodaniaPacjenta.Close();
+                        if (MainModel.Wizyty.CzyWizytaJestAktualna())
+                        {
+                            MainModel.Wizyty.ZapiszPacjentaNaWizyte(ListaPacjentow.Indeks);
+                            App.OknoDodaniaPacjenta.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Wybrana wizyta nie jest dostępna.");
+                            App.OknoDodaniaPacjenta.Close();
+                        }
                     },
                     p => ListaPacjentow.Indeks>-1
                     ));
