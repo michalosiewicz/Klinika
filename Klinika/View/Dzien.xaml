@@ -120,13 +120,13 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Margin="5" Content="Zapisz Pacjenta"
+            <Button Margin="5" Grid.Column="1" Content="Zapisz Pacjenta"
                     Command="{Binding Zapisz,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
                      AncestorType={x:Type UserControl}}}"/>
             
-            <Button Grid.Column="1" Margin="5" Content="Usuń Pacjenta"
+            <Button Grid.Column="0" Margin="5" Content="Usuń Pacjenta"
                     Command="{Binding Usun,
                      RelativeSource={RelativeSource 
                      Mode=FindAncestor,
