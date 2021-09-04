@@ -177,7 +177,7 @@ namespace Klinika.Model
         public List<Pacjent> ListaPacjentow(string nazwisko)
         {
             AktualniPacjenci = new List<Pacjent>();
-            if (nazwisko == "")
+            if (nazwisko == "" || nazwisko==null)
             {
                 AktualniPacjenci = dane.Pacjenci.ToList();
             }

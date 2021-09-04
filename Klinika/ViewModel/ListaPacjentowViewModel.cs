@@ -16,7 +16,7 @@ namespace Klinika.ViewModel
         public ListaPacjentowViewModel(DostepneWizyty wizyty)
         {
             dostepneWizyty = wizyty;
-            Pacjenci = wizyty.AktualniPacjenci;
+            Pacjenci = dostepneWizyty.ListaPacjentow(Nazwisko);
         }
 
         private List<DAL.Encje.Pacjent> pacjenci;
@@ -45,6 +45,5 @@ namespace Klinika.ViewModel
                 Indeks = -1;
             }
         }
-
     }
 }
