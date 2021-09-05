@@ -9,11 +9,14 @@ namespace Klinika.DAL.Encje
 {
     class Wizyta:IComparable<Wizyta>
     {
+        #region Właściwości
         public uint IdWizyty { get; set; }
         public uint IdLekarza { get; set; }
         public string Pesel { get; set; }
         public DateTime Data { get; set; }
+        #endregion
 
+        #region Konstruktor
         public Wizyta(MySqlDataReader reader)
         {
             IdWizyty = uint.Parse(reader["id_w"].ToString());
@@ -21,6 +24,7 @@ namespace Klinika.DAL.Encje
             Pesel = reader["pesel"].ToString();
             Data = DateTime.Parse(reader["data"].ToString());
         }
+        #endregion
 
         public override string ToString()
         {

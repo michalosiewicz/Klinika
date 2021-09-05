@@ -11,11 +11,17 @@ namespace Klinika.Model
 
     class Filtry
     {
+        #region Składowe prywatne
         private Dane dane;
         private DostepneWizyty wizyta;
+        #endregion
+
+        #region Właściwości
         public List<Specjalizacja> AktualneSpecjalizacje { get; set; }
         public List<Lekarz> AktualniLekarze { get; set; }
+        #endregion
 
+        #region Konstruktor
         public Filtry(Dane d,DostepneWizyty w)
         {
             dane = d;
@@ -23,7 +29,9 @@ namespace Klinika.Model
             AktualneSpecjalizacje = dane.Specjalizacje.ToList();
             AktualniLekarze = dane.Lekarze.ToList();
         }
+        #endregion
 
+        #region Metody
         public List<string> ZnajdzLekarzyPoSpecjalizacji(int index)
         {
             if (index == 0)
@@ -70,5 +78,6 @@ namespace Klinika.Model
             else
                 wizyta.Dostepnosc = null;
         }
+        #endregion
     }
 }

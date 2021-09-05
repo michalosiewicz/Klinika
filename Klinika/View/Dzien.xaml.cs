@@ -24,7 +24,8 @@ namespace Klinika.View
         {
             InitializeComponent();
         }
-
+        
+        #region Właściwości
         public static readonly DependencyProperty WizytyDP =
             DependencyProperty.Register(nameof(Wizyty), typeof(List<Model.OpisanaWizyta>), typeof(Dzien));
 
@@ -87,7 +88,9 @@ namespace Klinika.View
             get { return (string)GetValue(PeselDP); }
             set { SetValue(PeselDP, value); }
         }
+        #endregion
 
+        #region Polecenia
         public static readonly DependencyProperty ZapiszDP =
             DependencyProperty.Register(nameof(Zapisz), typeof(ICommand), typeof(Dzien));
         public ICommand Zapisz
@@ -103,6 +106,7 @@ namespace Klinika.View
             get { return (ICommand)GetValue(UsunDP); }
             set { SetValue(UsunDP, value); }
         }
+        #endregion
 
     }
 }

@@ -13,6 +13,8 @@ namespace Klinika.Model
     class DostepneWizyty
     {
         private Dane dane;
+
+        #region Właściwości
         public Specjalizacja WybranaSpecjalizacja { get; set; }
         public Lekarz WybranyLekarz { get; set; }
         public string Dostepnosc { get; set; }
@@ -20,7 +22,9 @@ namespace Klinika.Model
         public List<Pacjent> AktualniPacjenci { get; set; }
         public int IndeksWizyty { get; set; }
         DateTime AktualnaData { get; set; }
+        #endregion
 
+        #region Konstruktor
         public DostepneWizyty(Dane d)
         {
             dane = d;
@@ -28,7 +32,9 @@ namespace Klinika.Model
             AktualniPacjenci.Sort();
             AktualnaData = DateTime.Now;
         }
+        #endregion
 
+        #region Metody
         public bool DostepneDni(int numerDnia, int rok, int miesiac,DateTime aktualnaData)
         {
             foreach (var w in dane.Wizyty)
@@ -38,54 +44,8 @@ namespace Klinika.Model
                 {
                     if (aktualnaData.Date!=data.Date||aktualnaData.TimeOfDay <= data.TimeOfDay)
                     {
-                        if (WybranaSpecjalizacja == null && WybranyLekarz == null && Dostepnosc == null)
-                        {
+                        if (ZgodnoscZFiltrami(w))
                             return true;
-                        }
-                        if (Dostepnosc == null)
-                        {
-                            if (WybranyLekarz == null)
-                            {
-                                if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
-                                    return true;
-                            }
-                            else
-                            {
-                                if (WybranyLekarz.Id == w.IdLekarza)
-                                    return true;
-                            }
-                        }
-                        if (Dostepnosc == "Dostępna" && w.Pesel == "")
-                        {
-                            if (WybranaSpecjalizacja == null && WybranyLekarz == null)
-                                return true;
-                            if (WybranyLekarz == null)
-                            {
-                                if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
-                                    return true;
-                            }
-                            else
-                            {
-                                if (WybranyLekarz.Id == w.IdLekarza)
-                                    return true;
-                            }
-
-                        }
-                        if (Dostepnosc == "Zajęta" && w.Pesel != "")
-                        {
-                            if (WybranaSpecjalizacja == null && WybranyLekarz == null)
-                                return true;
-                            if (WybranyLekarz == null)
-                            {
-                                if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
-                                    return true;
-                            }
-                            else
-                            {
-                                if (WybranyLekarz.Id == w.IdLekarza)
-                                    return true;
-                            }
-                        }
                     }
                 }
             }
@@ -105,58 +65,10 @@ namespace Klinika.Model
                 DateTime data = w.Data;
                 if (data.Year == rok && data.Month == miesiac && data.Day == numerDnia&&aktualnaData.Date<=data.Date)
                 {
-                    if (WybranaSpecjalizacja == null && WybranyLekarz == null && Dostepnosc==null)
-                        zgodnoscZFiltrem= true;
-                    else if (Dostepnosc == null)
+                    if (aktualnaData.Date != data.Date || aktualnaData.TimeOfDay <= data.TimeOfDay)
                     {
-                        if (WybranyLekarz == null)
-                        {
-                            if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
-                                zgodnoscZFiltrem = true;
-                        }
-                        else
-                        {
-                            if (WybranyLekarz.Id == w.IdLekarza)
-                            {
-                                zgodnoscZFiltrem = true;
-                            }
-                        }
-                    }
-                    else if (Dostepnosc == "Dostępna" && w.Pesel == "")
-                    {
-                        if (WybranaSpecjalizacja == null && WybranyLekarz == null)
-                            zgodnoscZFiltrem= true;
-                        else if (WybranyLekarz == null)
-                        {
-                            if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
-                                zgodnoscZFiltrem= true;
-                        }
-                        else
-                        {
-                            if (WybranyLekarz.Id == w.IdLekarza)
-                                zgodnoscZFiltrem= true;
-                        }
-
-                    }
-                    else if (Dostepnosc == "Zajęta" && w.Pesel != "")
-                    {
-                        if (WybranaSpecjalizacja == null && WybranyLekarz == null)
-                            zgodnoscZFiltrem= true;
-                        else if (WybranyLekarz == null)
-                        {
-                            if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
-                                zgodnoscZFiltrem= true;
-                        }
-                        else
-                        {
-                            if (WybranyLekarz.Id == w.IdLekarza)
-                                zgodnoscZFiltrem= true;
-                        }
-                    }
-                    if (aktualnaData.Date == data.Date)
-                    {
-                        if (aktualnaData.TimeOfDay > data.TimeOfDay)
-                            zgodnoscZFiltrem = false;
+                        if (ZgodnoscZFiltrami(w))
+                            zgodnoscZFiltrem = true;
                     }
                     if (zgodnoscZFiltrem)
                     {
@@ -172,6 +84,59 @@ namespace Klinika.Model
             listaWizyt.Sort();
             AktualneWizyty.Sort();
             return listaWizyt;
+        }
+
+        private bool ZgodnoscZFiltrami(Wizyta w) 
+        {
+            if (WybranaSpecjalizacja == null && WybranyLekarz == null && Dostepnosc == null)
+            {
+                return true;
+            }
+            if (Dostepnosc == null)
+            {
+                if (WybranyLekarz == null)
+                {
+                    if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
+                        return true;
+                }
+                else
+                {
+                    if (WybranyLekarz.Id == w.IdLekarza)
+                        return true;
+                }
+            }
+            if (Dostepnosc == "Dostępna" && w.Pesel == "")
+            {
+                if (WybranaSpecjalizacja == null && WybranyLekarz == null)
+                    return true;
+                if (WybranyLekarz == null)
+                {
+                    if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
+                        return true;
+                }
+                else
+                {
+                    if (WybranyLekarz.Id == w.IdLekarza)
+                        return true;
+                }
+
+            }
+            if (Dostepnosc == "Zajęta" && w.Pesel != "")
+            {
+                if (WybranaSpecjalizacja == null && WybranyLekarz == null)
+                    return true;
+                if (WybranyLekarz == null)
+                {
+                    if (dane.CzyLekarzPosiadaSpecjalizacje(WybranaSpecjalizacja, dane.ZnajdzLekarzaPoID(w.IdLekarza)))
+                        return true;
+                }
+                else
+                {
+                    if (WybranyLekarz.Id == w.IdLekarza)
+                        return true;
+                }
+            }
+            return false;
         }
 
         public List<Pacjent> ListaPacjentow(string nazwisko)
@@ -231,5 +196,6 @@ namespace Klinika.Model
         {
             return dane.ZnajdzPacjnetaPoPesel(AktualneWizyty[indekswizyty].Pesel);
         }
+        #endregion
     }
 }

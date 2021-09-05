@@ -9,16 +9,18 @@ namespace Klinika.Model
     using DAL.Encje;
     using DAL.Repozytoria;
     using System.Collections.ObjectModel;
-    using System.Windows;
 
     class Dane
     {
+        #region Właściwości
         public ObservableCollection<Specjalizacja> Specjalizacje { get; set; } = new ObservableCollection<Specjalizacja>();
         public ObservableCollection<Lekarz> Lekarze { get; set; } = new ObservableCollection<Lekarz>();
         public ObservableCollection<Wizyta> Wizyty { get; set; } = new ObservableCollection<Wizyta>();
         public ObservableCollection<Posiada> Posiadaja { get; set; } = new ObservableCollection<Posiada>();
         public ObservableCollection<Pacjent> Pacjenci { get; set; } = new ObservableCollection<Pacjent>();
+        #endregion
 
+        #region Konstruktor
         public Dane()
         {
             try
@@ -45,12 +47,13 @@ namespace Klinika.Model
             }
             catch
             {
-                MessageBox.Show("Brak dostępu do bazy danych.");
-                App.Current.MainWindow.Close();
+                ViewModel.Zamkniecie.ZamknijProgram();
             }
         }
+        #endregion
 
-        public  Lekarz ZnajdzLekarzaPoID(uint id)
+        #region Metody
+        public Lekarz ZnajdzLekarzaPoID(uint id)
         {
             foreach (var l in Lekarze)
             {
@@ -90,7 +93,7 @@ namespace Klinika.Model
 
         public Pacjent ZnajdzPacjnetaPoPesel(string pesel)
         {
-            Pacjent pacjent = new Pacjent(); // SPRAWDZIC w ZNAJOMI
+            Pacjent pacjent = new Pacjent();
             foreach(var p in Pacjenci)
             {
                 if (p.Pesel == pesel)
@@ -120,8 +123,9 @@ namespace Klinika.Model
             }
             catch
             {
-                MessageBox.Show("Brak dostępu do bazy danych.");
+                ViewModel.Zamkniecie.ZamknijProgram();
             }
         }
+        #endregion
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="ViewModel\ListaPacjentowViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MiesiacViewModel.cs" />
+    <Compile Include="ViewModel\Zamkniecie.cs" />
     <Compile Include="View\DodawaniePacjenta.xaml.cs">
       <DependentUpon>DodawaniePacjenta.xaml</DependentUpon>
     </Compile>

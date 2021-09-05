@@ -9,11 +9,14 @@ namespace Klinika.DAL.Encje
 {
     class Lekarz
     {
+        #region Właściwości
         public uint Id { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public uint Sala { get; set; }
+        #endregion
 
+        #region Konstruktor
         public Lekarz(MySqlDataReader reader)
         {
             Id = uint.Parse(reader["id_l"].ToString());
@@ -21,6 +24,7 @@ namespace Klinika.DAL.Encje
             Nazwisko = reader["nazwisko"].ToString();
             Sala = uint.Parse(reader["sala"].ToString());
         }
+        #endregion
 
         public override string ToString()
         {

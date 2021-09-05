@@ -13,11 +13,14 @@ namespace Klinika.ViewModel
 
     class MainViewModel : ViewModelBase
     {
+        #region Właściwości
         public MiesiacViewModel Miesiac { get; set; }
         public FiltryViewModel Filtry { get; set; }
         public DzienViewModel Dzien { get; set; }
         public Model MainModel { get; set; }
+        #endregion
 
+        #region Konstruktor
         public MainViewModel()
         {
             MainModel = Model.Instance;
@@ -26,7 +29,9 @@ namespace Klinika.ViewModel
             Miesiac = new MiesiacViewModel(MainModel.Kalendarz,Dzien);
             Filtry = new FiltryViewModel(MainModel.Filtry,MainModel.Kalendarz,Miesiac,Dzien);
         }
+        #endregion
 
+        #region Polecenia
         private ICommand nastepnyMiesiac;
         public ICommand NastepnyMiesiac
         {
@@ -52,5 +57,6 @@ namespace Klinika.ViewModel
                     )) ;
             }
         }
+        #endregion
     }
 }

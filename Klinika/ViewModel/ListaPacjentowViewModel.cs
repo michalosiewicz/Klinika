@@ -13,12 +13,17 @@ namespace Klinika.ViewModel
     class ListaPacjentowViewModel:ViewModelBase
     {
         private DostepneWizyty dostepneWizyty;
+
+        #region Konstruktor
         public ListaPacjentowViewModel(DostepneWizyty wizyty)
         {
             dostepneWizyty = wizyty;
             Pacjenci = dostepneWizyty.ListaPacjentow(Nazwisko);
+            Indeks = -1;
         }
+        #endregion
 
+        #region Właściwości
         private List<DAL.Encje.Pacjent> pacjenci;
 
         public List<DAL.Encje.Pacjent> Pacjenci
@@ -27,7 +32,7 @@ namespace Klinika.ViewModel
             set { pacjenci = value; onPropertyChanged(nameof(Pacjenci)); }
         }
 
-        private int indeks = -1;
+        private int indeks;
 
         public int Indeks
         {
@@ -45,5 +50,6 @@ namespace Klinika.ViewModel
                 Indeks = -1;
             }
         }
+        #endregion
     }
 }

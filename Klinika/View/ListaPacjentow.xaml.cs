@@ -25,6 +25,7 @@ namespace Klinika.View
             InitializeComponent();
         }
 
+        #region Właściwości
         public static readonly DependencyProperty PacjenciDP =
             DependencyProperty.Register(nameof(Pacjenci), typeof(List<DAL.Encje.Pacjent>), typeof(ListaPacjentow));
 
@@ -51,6 +52,6 @@ namespace Klinika.View
             get { return (string)GetValue(NazwiskoDP); }
             set { SetValue(NazwiskoDP, value); }
         }
-
+        #endregion
     }
 }

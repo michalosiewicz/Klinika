@@ -24,7 +24,8 @@ namespace Klinika.View
         {
             InitializeComponent();
         }
-        
+
+        #region Właściwości
         public static readonly DependencyProperty DzienMiesiacaDP =
             DependencyProperty.Register(nameof(DzienMiesiaca), typeof(uint[]), typeof(Miesiac));
 
@@ -43,15 +44,6 @@ namespace Klinika.View
             set { SetValue(WidocznyDP, value); }
         }
 
-        public static readonly DependencyProperty WybranoDzienDP =
-            DependencyProperty.Register(nameof(WybranoDzien), typeof(ICommand), typeof(Miesiac));
-
-        public ICommand WybranoDzien
-        {
-            get { return (ICommand)GetValue(WybranoDzienDP); }
-            set { SetValue(WybranoDzienDP, value); }
-        }
-
         public static readonly DependencyProperty NazwaMiesiacaDP =
             DependencyProperty.Register(nameof(NazwaMiesiaca), typeof(string), typeof(Miesiac));
 
@@ -60,5 +52,17 @@ namespace Klinika.View
             get { return (string)GetValue(NazwaMiesiacaDP); }
             set { SetValue(NazwaMiesiacaDP, value); }
         }
+        #endregion
+
+        #region Polecenia
+        public static readonly DependencyProperty WybranoDzienDP =
+            DependencyProperty.Register(nameof(WybranoDzien), typeof(ICommand), typeof(Miesiac));
+
+        public ICommand WybranoDzien
+        {
+            get { return (ICommand)GetValue(WybranoDzienDP); }
+            set { SetValue(WybranoDzienDP, value); }
+        }
+        #endregion
     }
 }

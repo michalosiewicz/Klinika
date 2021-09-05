@@ -11,6 +11,8 @@ namespace Klinika.Model
     class Terminarz
     {
         private DostepneWizyty wizyty;
+
+        #region Właściwości
         public DateTime DataAktualna {get;set;}
         public DateTime DataKalendarza { get; set; }
         public Calendar Kalendarz { get; set; }
@@ -22,8 +24,9 @@ namespace Klinika.Model
         public string NazwaMiesiaca { get; set; }
 
         public int PierwszyDzienMiesiaca { get; set; }
+        #endregion
 
-
+        #region Konstruktor
         public Terminarz(DostepneWizyty w)
         {
             wizyty = w;
@@ -31,7 +34,9 @@ namespace Klinika.Model
             Kalendarz = new GregorianCalendar();
             UluzKalendarz(DataAktualna.Year, DataAktualna.Month);
         }
+        #endregion
 
+        #region Metody
         private void UluzKalendarz(int rok,int miesiac)
         {
             DataKalendarza = new DateTime(rok, miesiac, 1);
@@ -122,5 +127,6 @@ namespace Klinika.Model
                 return false;
             return true;
         }
+        #endregion
     }
 }

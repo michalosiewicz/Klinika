@@ -8,11 +8,14 @@ namespace Klinika.Model
 {
     public class OpisanaWizyta:IComparable<OpisanaWizyta>
     {
+        #region Właściwości
         public string Sala { get; set; }
         public string Status { get; set; }
         public string Lekarz { get; set; }
         public string Godzina { get; set; }
+        #endregion
 
+        #region Konstruktor
         public OpisanaWizyta(string godzina,string lekarz,uint sala,string status)
         {
             Godzina = godzina;
@@ -20,6 +23,7 @@ namespace Klinika.Model
             Sala = sala.ToString();
             Status = status;
         }
+        #endregion
 
         public int CompareTo(OpisanaWizyta opisanaWizyta)
         {

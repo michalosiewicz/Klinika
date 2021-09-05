@@ -12,6 +12,7 @@ namespace Klinika.DAL.Repozytoria
     {
         private const string WSZYSTKIE_WIZYTY = "SELECT * FROM wizyty";
 
+        #region Metody
         public static List<Wizyta> PobierzWszystkieWizyty()
         {
             List<Wizyta> wizyty = new List<Wizyta>();
@@ -43,5 +44,6 @@ namespace Klinika.DAL.Repozytoria
             }
             return stan;
         }
+        #endregion
     }
 }

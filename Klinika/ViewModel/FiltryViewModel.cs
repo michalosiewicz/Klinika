@@ -8,16 +8,18 @@ namespace Klinika.ViewModel
 {
     using BaseClass;
     using Model;
-    using System.Windows;
     using System.Windows.Input;
 
     class FiltryViewModel : ViewModelBase
     {
+        #region Składowe Prywatne
         private Filtry filtry;
         private Terminarz terminarz;
         private MiesiacViewModel miesiac;
         private DzienViewModel dzien;
+        #endregion
 
+        #region Właściwości
         private List<string> specjalizacje;
 
         public List<string> Specjalizcje
@@ -57,7 +59,9 @@ namespace Klinika.ViewModel
             get { return indexStatus; }
             set { indexStatus = value; onPropertyChanged(nameof(IndexStatus)); }
         }
+        #endregion
 
+        #region Polecenia
         private ICommand wybranoFiltry;
         public ICommand WybranoFiltry
         {
@@ -67,10 +71,7 @@ namespace Klinika.ViewModel
                 return wybranoFiltry ?? (wybranoFiltry = new RelayCommand(
                     p =>
                     {
-                        filtry.WybranoFiltry(IndexSpecjalizacji,IndexLekarza,IndexStatus);
-                        terminarz.PierwszyMiesac();
-                        miesiac.Aktualizacja();
-                        dzien.Reset();
+                        Wybrano();
                     },
 
                     p => true
@@ -111,7 +112,19 @@ namespace Klinika.ViewModel
                     ));
             }
         }
+        #endregion
 
+        #region Metody
+        private void Wybrano()
+        {
+            filtry.WybranoFiltry(IndexSpecjalizacji, IndexLekarza, IndexStatus);
+            terminarz.PierwszyMiesac();
+            miesiac.Aktualizacja();
+            dzien.Reset();
+        }
+        #endregion
+
+        #region Konstruktor
         public FiltryViewModel(Filtry f,Terminarz t,MiesiacViewModel m,DzienViewModel d)
         {
             filtry = f;
@@ -121,5 +134,6 @@ namespace Klinika.ViewModel
             Specjalizcje = filtry.ZnajdzSpecjalizacjeLekarzy(0);
             Lekarze = filtry.ZnajdzLekarzyPoSpecjalizacji(0);
         }
+        #endregion
     }
 }

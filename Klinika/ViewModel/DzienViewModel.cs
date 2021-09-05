@@ -13,9 +13,23 @@ namespace Klinika.ViewModel
 
     class DzienViewModel : ViewModelBase
     {
+        #region Prywatne składowe
         private Terminarz terminarz;
 
         private DostepneWizyty dostepneWizyty;
+
+        private const string WIZYTA_NIEDOSTEPNA = "Wybrana wizyta nie jest dostępna.";
+
+        private const string USUN_PACJENTA = "Czy chcesz usunąć pacjenta z wybranej wizyty?";
+
+        private const string USUN = "Usuń pacjenta";
+
+        private const string NAZWISKO_IMIE = "Nazwisko Imię : ";
+
+        private const string PESEL = "Pesel : ";
+        #endregion
+
+        #region Właściwości
         public int NumerDnia { get; set; }
         public int Miesiac { get; set; }
         public int Rok { get; set; }
@@ -37,27 +51,13 @@ namespace Klinika.ViewModel
             set { data = value; onPropertyChanged(nameof(Data)); }
         }
 
-        private int index=-1;
+        private int index;
 
         public int Index
         {
             get { return index; }
-            set { index = value; onPropertyChanged(nameof(Index)); 
-                dostepneWizyty.IndeksWizyty = Index;
-                if (Index > -1)
-                {
-                    if (dostepneWizyty.CzyWizytaJestZajeta())
-                    {
-                        DAL.Encje.Pacjent pacjent = dostepneWizyty.PrzypisanyPacjent(Index);
-                        NazwiskoImie = "Nazwisko Imię : " + pacjent.Nazwisko + " " + pacjent.Imie;
-                        Pesel = "Pesel : " + pacjent.Pesel;
-                        WidoczneInformacjeOPacjencie = "Visible";
-                    }
-                    else
-                        WidoczneInformacjeOPacjencie = "Collapsed";
-                }
-                else
-                    WidoczneInformacjeOPacjencie = "Collapsed";
+            set { index = value; onPropertyChanged(nameof(Index));
+                ZmianaIndeksu();
             }
         }
 
@@ -92,7 +92,9 @@ namespace Klinika.ViewModel
             get { return pesel; }
             set { pesel = value; onPropertyChanged(nameof(Pesel)); }
         }
+        #endregion
 
+        #region Polecenia
         private ICommand zapiszPacjenta;
         public ICommand ZapiszPacjenta
         {
@@ -102,15 +104,7 @@ namespace Klinika.ViewModel
                 return zapiszPacjenta ?? (zapiszPacjenta = new RelayCommand(
                     p =>
                     {
-                        if (dostepneWizyty.CzyWizytaJestAktualna())
-                        {
-                            App.OknoDodaniaPacjenta = new View.DodawaniePacjenta();
-                            App.OknoDodaniaPacjenta.ShowDialog();
-                        }
-                        else
-                            MessageBox.Show("Wybrana wizyta nie jest dostępna.");
-                        Wizyty = terminarz.WizytyDanegoDnia(NumerDnia, Miesiac, Rok, PierwszyDzienMiesiaca);
-                        Index = -1;
+                        ZapisywaniePacjenta();
                     },
 
                     p => Index >-1 && !dostepneWizyty.CzyWizytaJestZajeta()
@@ -127,28 +121,21 @@ namespace Klinika.ViewModel
                 return usunPacjenta ?? (usunPacjenta = new RelayCommand(
                     p =>
                     {
-                        if (dostepneWizyty.CzyWizytaJestAktualna())
-                        {
-                            var result = MessageBox.Show($"Czy chcesz usunąć pacjenta z wybranej wizyty?",
-                                "Usuń pacjenta", MessageBoxButton.YesNo);
-                            if (result == MessageBoxResult.Yes)
-                                dostepneWizyty.UsunPacjnetaZWizyty();
-                        }
-                        else
-                            MessageBox.Show("Wybrana wizyta nie jest dostępna.");
-                        Wizyty = terminarz.WizytyDanegoDnia(NumerDnia, Miesiac, Rok, PierwszyDzienMiesiaca);
-                        Index = -1;
+                        UsuwaniePacjenta();
                     },
 
                     p => Index >-1 && dostepneWizyty.CzyWizytaJestZajeta()
                     ));
             }
         }
+        #endregion
 
+        #region Metody
         public void Aktualizuj(string data,List<OpisanaWizyta> wizyty)
         {
             Data = data;
             Wizyty = wizyty;
+            Widoczne = "Visible";
         }
 
         public void Reset()
@@ -159,12 +146,63 @@ namespace Klinika.ViewModel
             WidoczneInformacjeOPacjencie= "Collapsed";
         }
 
+        private void ZmianaIndeksu()
+        {
+            dostepneWizyty.IndeksWizyty = Index;
+            if (Index > -1)
+            {
+                if (dostepneWizyty.CzyWizytaJestZajeta())
+                {
+                    DAL.Encje.Pacjent pacjent = dostepneWizyty.PrzypisanyPacjent(Index);
+                    NazwiskoImie = NAZWISKO_IMIE + pacjent.Nazwisko + " " + pacjent.Imie;
+                    Pesel = PESEL + pacjent.Pesel;
+                    WidoczneInformacjeOPacjencie = "Visible";
+                }
+                else
+                    WidoczneInformacjeOPacjencie = "Collapsed";
+            }
+            else
+                WidoczneInformacjeOPacjencie = "Collapsed";
+        }
+
+        private void ZapisywaniePacjenta()
+        {
+            if (dostepneWizyty.CzyWizytaJestAktualna())
+            {
+                App.OknoDodaniaPacjenta = new View.DodawaniePacjenta();
+                App.OknoDodaniaPacjenta.ShowDialog();
+            }
+            else
+                MessageBox.Show(WIZYTA_NIEDOSTEPNA);
+            Wizyty = terminarz.WizytyDanegoDnia(NumerDnia, Miesiac, Rok, PierwszyDzienMiesiaca);
+            Index = -1;
+        }
+
+        private void UsuwaniePacjenta()
+        {
+            if (dostepneWizyty.CzyWizytaJestAktualna())
+            {
+                var result = MessageBox.Show(USUN_PACJENTA,
+                    USUN, MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                    dostepneWizyty.UsunPacjnetaZWizyty();
+            }
+            else
+                MessageBox.Show(WIZYTA_NIEDOSTEPNA);
+            Wizyty = terminarz.WizytyDanegoDnia(NumerDnia, Miesiac, Rok, PierwszyDzienMiesiaca);
+            Index = -1;
+        }
+        #endregion
+
+        #region Konstruktor
         public DzienViewModel(Terminarz t,DostepneWizyty dW)
         {
             terminarz = t;
             dostepneWizyty = dW;
             Widoczne= "Collapsed";
             WidoczneInformacjeOPacjencie= "Collapsed";
+            Index = -1;
         }
+        #endregion
     }
 }

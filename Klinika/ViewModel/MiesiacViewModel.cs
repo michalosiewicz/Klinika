@@ -8,16 +8,17 @@ namespace Klinika.ViewModel
 {
     using BaseClass;
     using Model;
-    using System.Windows;
     using System.Windows.Input;
 
     class MiesiacViewModel:ViewModelBase
     {
+        #region Składowe prywatne
         private Terminarz terminarz;
         private DzienViewModel dzien;
+        #endregion
 
 
-
+        #region Właściwości
         private uint[] dniMiesiaca;
         
 
@@ -43,7 +44,9 @@ namespace Klinika.ViewModel
             get { return nazwaMiesiaca; }
             set { nazwaMiesiaca = value; onPropertyChanged(nameof(NazwaMiesiaca)); }
         }
+        #endregion
 
+        #region Polecenia
         private ICommand wybranoDzien;
         public ICommand WybranoDzien
         {
@@ -52,23 +55,16 @@ namespace Klinika.ViewModel
             {
                 return wybranoDzien ?? (wybranoDzien = new RelayCommand(
                     p => {
-                        int miesiac = terminarz.DataKalendarza.Month;
-                        int rok = terminarz.DataKalendarza.Year;
-                        dzien.Aktualizuj(
-                        terminarz.WybranoDzien(int.Parse(p.ToString())),
-                        terminarz.WizytyDanegoDnia(int.Parse(p.ToString()), miesiac, rok,terminarz.PierwszyDzienMiesiaca));
-                        dzien.NumerDnia = int.Parse(p.ToString());
-                        dzien.Miesiac = terminarz.DataKalendarza.Month;
-                        dzien.Rok = terminarz.DataKalendarza.Year;
-                        dzien.PierwszyDzienMiesiaca = terminarz.PierwszyDzienMiesiaca;
-                        dzien.Widoczne = "Visible";
+                        AktualizacjaDnia(int.Parse(p.ToString()));
                     },
                     
                     p =>  terminarz.DniDostepne(int.Parse(p.ToString()))
                     )) ;
             }
         }
+        #endregion
 
+        #region Konstruktor
         public MiesiacViewModel(Terminarz t,DzienViewModel d)
         {
             terminarz = t;
@@ -77,13 +73,29 @@ namespace Klinika.ViewModel
             Widoczny = terminarz.Widoczne;
             NazwaMiesiaca = terminarz.NazwaMiesiaca;
         }
+        #endregion
 
+        #region Metody
         public void Aktualizacja()
         {
             DniMiesiaca = terminarz.DniMiesaca;
             Widoczny = terminarz.Widoczne;
             NazwaMiesiaca = terminarz.NazwaMiesiaca;
         }
-        
+
+        private void AktualizacjaDnia(int numerDnia)
+        {
+            int miesiac = terminarz.DataKalendarza.Month;
+            int rok = terminarz.DataKalendarza.Year;
+            dzien.Aktualizuj(
+            terminarz.WybranoDzien(numerDnia),
+            terminarz.WizytyDanegoDnia(numerDnia, miesiac, rok, terminarz.PierwszyDzienMiesiaca));
+            dzien.NumerDnia = numerDnia;
+            dzien.Miesiac = terminarz.DataKalendarza.Month;
+            dzien.Rok = terminarz.DataKalendarza.Year;
+            dzien.PierwszyDzienMiesiaca = terminarz.PierwszyDzienMiesiaca;
+        }
+        #endregion
+
     }
 }

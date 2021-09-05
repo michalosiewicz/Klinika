@@ -9,10 +9,13 @@ namespace Klinika.DAL.Encje
 {
     public class Pacjent:IComparable<Pacjent>
     {
+        #region Właściwości
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Pesel { get; set; }
+        #endregion
 
+        #region Konstruktory
         public Pacjent(MySqlDataReader reader)
         {
             Imie = reader["imie"].ToString();
@@ -23,6 +26,8 @@ namespace Klinika.DAL.Encje
         {
 
         }
+        #endregion
+        
         public override string ToString()
         {
             return $"{Nazwisko} {Imie} {Pesel}";

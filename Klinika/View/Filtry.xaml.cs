@@ -25,6 +25,7 @@ namespace Klinika.View
             InitializeComponent();
         }
 
+        #region Właściowości
         public static readonly DependencyProperty SpecjalizacjeDP =
             DependencyProperty.Register(nameof(Specjalizacje), typeof(List<string>), typeof(Filtry));
 
@@ -69,7 +70,9 @@ namespace Klinika.View
             get { return (int)GetValue(StatusIndexDP); }
             set { SetValue(StatusIndexDP, value); }
         }
+        #endregion
 
+        #region Polecenia
         public static readonly DependencyProperty WybranoFiltryDP =
             DependencyProperty.Register(nameof(WybranoFiltry), typeof(ICommand), typeof(Filtry));
         public ICommand WybranoFiltry
@@ -126,5 +129,6 @@ namespace Klinika.View
         {
             RaiseZmianaLekarza();
         }
+        #endregion
     }
 }
