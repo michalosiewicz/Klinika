@@ -14,6 +14,10 @@ namespace Klinika.Model
     {
         private Dane dane;
 
+        private const string DOSTEPNA = "Dostępna";
+        
+        private const string ZAJETA = "Zajęta";
+
         #region Właściwości
         public Specjalizacja WybranaSpecjalizacja { get; set; }
         public Lekarz WybranyLekarz { get; set; }
@@ -60,7 +64,7 @@ namespace Klinika.Model
             bool zgodnoscZFiltrem;
             foreach (var w in dane.Wizyty)
             {
-                statusWizyty = "Dostępna";
+                statusWizyty = DOSTEPNA;
                 zgodnoscZFiltrem = false;
                 DateTime data = w.Data;
                 if (data.Year == rok && data.Month == miesiac && data.Day == numerDnia&&aktualnaData.Date<=data.Date)
@@ -74,7 +78,7 @@ namespace Klinika.Model
                     {
                         Lekarz l = dane.ZnajdzLekarzaPoID(w.IdLekarza);
                         if (w.Pesel != "")
-                            statusWizyty = "Zajęta";
+                            statusWizyty = ZAJETA;
                         OpisanaWizyta opisanaWizyta = new OpisanaWizyta(w.ToString(), l.ToString(), l.Sala, statusWizyty);
                         listaWizyt.Add(opisanaWizyta);
                         AktualneWizyty.Add(w);
@@ -105,7 +109,7 @@ namespace Klinika.Model
                         return true;
                 }
             }
-            if (Dostepnosc == "Dostępna" && w.Pesel == "")
+            if (Dostepnosc == DOSTEPNA && w.Pesel == "")
             {
                 if (WybranaSpecjalizacja == null && WybranyLekarz == null)
                     return true;
@@ -121,7 +125,7 @@ namespace Klinika.Model
                 }
 
             }
-            if (Dostepnosc == "Zajęta" && w.Pesel != "")
+            if (Dostepnosc == ZAJETA && w.Pesel != "")
             {
                 if (WybranaSpecjalizacja == null && WybranyLekarz == null)
                     return true;
